@@ -1,5 +1,5 @@
 ---
-title: "CS 5805"
+title: "About"
 about:
   template: jolla
 
