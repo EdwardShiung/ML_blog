@@ -6,4 +6,4 @@ about:
 ---
 
 
-The Blog is for CS5805 in Virginia Tech, which include the Probability Theory & Random Variables, Clustering, Linear & Non-Linear Regression, Classification, and Anomaly & Outlier Detection.
+The Blog is for CS5805 Note in Virginia Tech, which include the Probability Theory & Random Variables, Clustering, Linear & Non-Linear Regression, Classification, and Anomaly & Outlier Detection.
