@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Machine Learning Course 5805"
@@ -7,10 +8,8 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/EdwardShiung
 format:
   html:
-    theme: morph
+    theme: cosmo
     css: styles.css

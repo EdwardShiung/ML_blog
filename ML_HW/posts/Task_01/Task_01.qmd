@@ -1,0 +1,28 @@
+---
+title: "Task 01 : Probability Theory & Random Variable"
+author: "Edward Xiong"
+date: "2023-10-23"
+categories: [Machine Learning]
+image: ../../assets/pythonImage.jpg
+---
+
+
+```{python}
+### Task_02 Probability Theory & Random Variables
+### Testing for Homework Environment
+```
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+```
+
+```{python}
+data = np.random.randn(1000)
+plt.hist(data, bins=20, color='blue', alpha=0.5)
+plt.title('Histogram of Random Data')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+```

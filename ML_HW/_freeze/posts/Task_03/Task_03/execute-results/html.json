@@ -1,0 +1,11 @@
+{
+  "hash": "a1c445bec79bb57eb1dc94048f1e85d5",
+  "result": {
+    "markdown": "---\ntitle: \"Task 03 : Linear & Non-Linear Regression\"\nauthor: \"Edward Xiong\"\ndate: \"2023-11-2\"\ncategories: [Machine Learning]\nimage: ../../assets/linearAndNonlinear.jpg\n---\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\n### Task_03 Linear & Non-Linear Regression\n### Testing for Homework Environment\n```\n:::\n\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n```\n:::\n\n\n::: {.cell execution_count=3}\n``` {.python .cell-code}\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](Task_03_files/figure-html/cell-4-output-1.png){width=593 height=449}\n:::\n:::\n\n\n",
+    "supporting": [
+      "Task_03_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

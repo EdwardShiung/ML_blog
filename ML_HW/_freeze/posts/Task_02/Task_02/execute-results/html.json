@@ -1,0 +1,11 @@
+{
+  "hash": "0a98b6e41595fff60fec52148c9bdc2a",
+  "result": {
+    "markdown": "---\ntitle: \"Task 02 : Clustering\"\nauthor: \"Edward Xiong\"\ndate: \"2023-10-31\"\ncategories: [Machine Learning]\nimage: ../../assets/machineLearning.jpg\n---\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\n### Task_02 Clustering\n### Testing for Homework Environment\n```\n:::\n\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n```\n:::\n\n\n::: {.cell execution_count=3}\n``` {.python .cell-code}\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](Task_02_files/figure-html/cell-4-output-1.png){width=593 height=449}\n:::\n:::\n\n\n",
+    "supporting": [
+      "Task_02_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
