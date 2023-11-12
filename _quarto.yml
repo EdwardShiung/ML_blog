@@ -13,7 +13,8 @@ website:
       - icon: newspaper
         href: blog.qmd
     right:
-      - about.qmd
+      - icon: file-person
+        href: about.qmd
       - icon: github
         href: https://github.com/EdwardShiung
 
