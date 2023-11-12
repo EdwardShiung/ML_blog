@@ -36,7 +36,7 @@ website:
 format:
   html:
     page-layout: full
-    theme: darkly
+    theme: [slate, custom.scss]
     toc: true
     css: styles.css
     code-copy: true

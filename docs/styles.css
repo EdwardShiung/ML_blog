@@ -21,9 +21,6 @@
 .quarto-category{
     font-weight: 800;
 }
-.navbar-nav li nav.item:hover{
-    background-color: red;
-}
 
 .title{
     color: white;
