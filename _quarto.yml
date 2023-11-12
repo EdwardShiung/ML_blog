@@ -36,7 +36,7 @@ website:
 format:
   html:
     page-layout: full
-    theme: [slate, custom.scss]
+    theme: [slate]
     toc: true
     css: styles.css
     code-copy: true
