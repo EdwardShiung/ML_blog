@@ -2,9 +2,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Tian Yu (Edward) Shiung",
     "section": "",
-    "text": "The Blog is for CS5805 Note in Virginia Tech, which include the Probability Theory & Random Variables, Clustering, Linear & Non-Linear Regression, Classification, and Anomaly & Outlier Detection."
+    "text": "About me\nI am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets."
   },
   {
     "objectID": "posts/Task_04/Task_04.html",
@@ -21,11 +21,74 @@
     "text": "### Task_02 Clustering\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()"
   },
   {
-    "objectID": "posts/Task_01/Task_01.html",
-    "href": "posts/Task_01/Task_01.html",
-    "title": "Task 01 : Probability Theory & Random Variable",
+    "objectID": "posts/Probability Theory/1-3_Implementation.html",
+    "href": "posts/Probability Theory/1-3_Implementation.html",
+    "title": "1-3 Implementation in ML",
     "section": "",
-    "text": "### Task_02 Probability Theory & Random Variables\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()"
+    "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-3_Implementation.html#random-variable",
+    "href": "posts/Probability Theory/1-3_Implementation.html#random-variable",
+    "title": "1-3 Implementation in ML",
+    "section": "",
+    "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-3_Implementation.html#types-of-random-variables",
+    "href": "posts/Probability Theory/1-3_Implementation.html#types-of-random-variables",
+    "title": "1-3 Implementation in ML",
+    "section": "Types of Random Variables:",
+    "text": "Types of Random Variables:\n\n1. Discrete Random Variable:\n\nA discrete random variable takes on a finite or countably infinite set of distinct values.\nThe probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.\n\n\n\n2. Continuous Random Variable:\n\nA continuous random variable can take on any value within a certain range.\nThe probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.\n\nThe key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-1_Probability Theory.html",
+    "href": "posts/Probability Theory/1-1_Probability Theory.html",
+    "title": "1-1 Probability Theory",
+    "section": "",
+    "text": "Probability Theory is a mathematical discipline that studies the likelihood of events and the rules governing their occurrence. It provides a formal framework for expressing, analyzing, and manipulating uncertainty, randomness, and chance. The fundamental concept is probability, a numerical measure ranging from 0 to 1, representing the likelihood of a particular event occurring. Probability theory is extensively used in various fields, including statistics, machine learning, physics, finance, and many others, to model and analyze uncertain situations."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-1_Probability Theory.html#probability-theory",
+    "href": "posts/Probability Theory/1-1_Probability Theory.html#probability-theory",
+    "title": "1-1 Probability Theory",
+    "section": "",
+    "text": "Probability Theory is a mathematical discipline that studies the likelihood of events and the rules governing their occurrence. It provides a formal framework for expressing, analyzing, and manipulating uncertainty, randomness, and chance. The fundamental concept is probability, a numerical measure ranging from 0 to 1, representing the likelihood of a particular event occurring. Probability theory is extensively used in various fields, including statistics, machine learning, physics, finance, and many others, to model and analyze uncertain situations."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-1_Probability Theory.html#probability-theory-and-statistics",
+    "href": "posts/Probability Theory/1-1_Probability Theory.html#probability-theory-and-statistics",
+    "title": "1-1 Probability Theory",
+    "section": "Probability Theory and Statistics",
+    "text": "Probability Theory and Statistics\n\nInferential Statistics\nProbability theory plays a crucial role in inferential statistics. One of the goals of statistics is to infer population characteristics based on sample data. Probability theory provides a framework to make inferences about population characteristics by observing the probability distribution in the sample.\n\n\nHypothesis Testing\nIn statistical analysis, hypothesis testing is a common task, involving statistical inferences about a hypothesis. Probability theory offers probability distributions and testing methods, allowing us to assess the difference between observed data and the expected outcomes under a specific hypothesis.\n\n\nConfidence Intervals\nProbability theory is also relevant to the construction of confidence intervals. Confidence intervals provide estimates for parameter values, and probability theory provides tools to quantify the uncertainty associated with such estimates."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-1_Probability Theory.html#probability-theory-and-machine-learning",
+    "href": "posts/Probability Theory/1-1_Probability Theory.html#probability-theory-and-machine-learning",
+    "title": "1-1 Probability Theory",
+    "section": "Probability Theory and Machine Learning",
+    "text": "Probability Theory and Machine Learning\n\nSupervised Learning\nIn supervised learning, models are typically trained from labeled data, and these models are then used to predict outcomes for new, unlabeled data. Probability theory concepts play a key role in constructing such models, especially in the development of probability models like Bayesian models.\n\n\nUnsupervised Learning\nIn unsupervised learning, models aim to discover patterns in data without relying on labels. Probability theory concepts such as clustering and probability density estimation find applications in unsupervised learning.\n\n\nReinforcement Learning\nReinforcement learning involves agents learning through interaction with an environment. Probability theory concepts like stochastic processes and Markov decision processes are useful for modeling such interactive processes."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-2_Random Variable.html",
+    "href": "posts/Probability Theory/1-2_Random Variable.html",
+    "title": "1-2 Random Variable",
+    "section": "",
+    "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-2_Random Variable.html#random-variable",
+    "href": "posts/Probability Theory/1-2_Random Variable.html#random-variable",
+    "title": "1-2 Random Variable",
+    "section": "",
+    "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
+  },
+  {
+    "objectID": "posts/Probability Theory/1-2_Random Variable.html#types-of-random-variables",
+    "href": "posts/Probability Theory/1-2_Random Variable.html#types-of-random-variables",
+    "title": "1-2 Random Variable",
+    "section": "Types of Random Variables:",
+    "text": "Types of Random Variables:\n\n1. Discrete Random Variable:\n\nA discrete random variable takes on a finite or countably infinite set of distinct values.\nThe probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.\n\n\n\n2. Continuous Random Variable:\n\nA continuous random variable can take on any value within a certain range.\nThe probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.\n\nThe key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner."
   },
   {
     "objectID": "posts/Task_05/Task_05.html",
@@ -46,6 +109,6 @@
     "href": "index.html",
     "title": "Machine Learning Note",
     "section": "",
-    "text": "Task 01 : Probability Theory & Random Variable\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\nOct 23, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 02 : Clustering\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\nOct 31, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\nNov 2, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 04 : Classification\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\nNov 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\nNov 6, 2023\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "1-1 Probability Theory\n\n\n\nMachine Learning\n\n\nStatistics\n\n\nPython\n\n\n\nProbability Theory is a branch of mathematics that studies the likelihood or chance of different outcomes in uncertain events.\n\n\n\nEdward Xiong\n\n\n10/23/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-2 Random Variable\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\nEdward Xiong\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-3 Implementation in ML\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\nEdward Xiong\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 02 : Clustering\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n10/31/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n11/2/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 04 : Classification\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n11/5/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n11/6/23\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -1,9 +1,11 @@
 ---
-title: "About"
+title: "Tian Yu (Edward) Shiung"
+image: assets/myImage.jpg
 about:
   template: jolla
-
+sidebar: false
+toc: false
 ---
 
-
-The Blog is for CS5805 Note in Virginia Tech, which include the Probability Theory & Random Variables, Clustering, Linear & Non-Linear Regression, Classification, and Anomaly & Outlier Detection.
+# About me
+I am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.

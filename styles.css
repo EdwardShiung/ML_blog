@@ -1,1 +1,38 @@
-/* css styles */
+/* .sourceCode{
+    background-color: red;
+} */
+
+.listing-author{
+    color: white;
+    font-weight: 800;
+}
+
+.listing-date{
+    color: white;
+    font-weight: 800;
+}
+
+.timeline-comment{
+    /* background-color: #443e4d; */
+}
+.listing-category{
+    font-weight: 500;
+}
+.quarto-category{
+    font-weight: 800;
+}
+.navbar-nav li nav.item:hover{
+    background-color: red;
+}
+
+.title{
+    color: white;
+}
+
+.anchored{
+    color: white;
+}
+
+.no-anchor{
+    color: white;
+}

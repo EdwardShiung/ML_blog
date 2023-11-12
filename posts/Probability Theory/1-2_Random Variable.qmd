@@ -1,0 +1,37 @@
+---
+title: 1-2 Random Variable
+title-block-banner: false
+author: Edward Xiong
+date: '2023-10-24'
+description: "A random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment."
+format:
+  html:
+    toc: true
+    toc-location: right
+categories:
+  - Machine Learning
+image: ../../assets/pythonImage.jpg
+jupyter: python3
+
+comments:
+  utterances:
+    repo: quarto-dev/quarto-web
+    theme: dark-blue
+    issue-term: title
+---
+
+Random Variable
+-
+A **random variable** is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment.
+
+## Types of Random Variables:
+
+### 1. Discrete Random Variable:
+   - A discrete random variable takes on a finite or countably infinite set of distinct values.
+   - The probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.
+
+### 2. Continuous Random Variable:
+   - A continuous random variable can take on any value within a certain range.
+   - The probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.
+
+The key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner.

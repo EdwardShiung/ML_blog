@@ -1,14 +1,42 @@
 project:
   type: website
   output-dir: docs
+
 website:
-  title: "Machine Learning Course 5805"
+  title: "Blog"
+  page-navigation: true
+
   navbar:
+    background: dark
+    collapse: true
     right:
       - about.qmd
       - icon: github
         href: https://github.com/EdwardShiung
+
+  sidebar:
+    style: "docked"
+    pinned: true
+    collapse-level: 1
+    contents:
+      - section: "Statistics"
+        contents: posts/Probability Theory/**
+      - section: "Machine Learning"
+      - section: "Deep Learning"
+      - section: "NLP"
+      - section:  "Computer Vision"
+
+  page-footer:
+    center: "© Copyright 2023 Tian Yu Shiung"
+    # background: rgb(242, 194, 82)
+    right:
+      - icon: github
+        href: https://github.com/EdwardShiung
+
 format:
   html:
-    theme: cosmo
+    page-layout: full
+    theme: [slate, custom.scss]
+    toc: true
     css: styles.css
+    code-copy: true

@@ -1,8 +1,11 @@
 ---
 title: "Machine Learning Note"
 listing:
-  contents: posts
+  date-format: short
+  contents: posts/**
   sort: "date"
   type: grid
+  max-items: 7
+  page-size: 6
   categories: true
 ---
