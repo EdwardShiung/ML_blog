@@ -1,43 +1,57 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Tian Yu (Edward) Shiung",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
     "section": "",
-    "text": "About me\nI am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets."
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n1-1 Probability Theory\n\n\n2 min\n\n\n\nMachine Learning\n\n\nStatistics\n\n\nPython\n\n\n\nProbability Theory is a branch of mathematics that studies the likelihood or chance of different outcomes in uncertain events.\n\n\n\n10/23/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-2 Random Variable\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-3 Implementation in ML\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 02 : Clustering\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n10/31/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n11/2/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 04 : Classification\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n11/5/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n11/6/23\n\n\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
   },
   {
-    "objectID": "posts/Task_04/Task_04.html",
-    "href": "posts/Task_04/Task_04.html",
-    "title": "Task 04 : Classification",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Tian Yu (Edward) Shiung",
     "section": "",
-    "text": "### Task_04 Classification\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()"
+    "text": "LinkedIn\n  \n  \n    \n     GitHub\n  \n  \n    \n     Kaggle\n  \n  \n    \n     Email\n  \n\n      \nI am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\nRead more about me here.\nCheck out the latest project of my github.If you enjoy the projects, please consider giving it a star✨ on Github."
   },
   {
-    "objectID": "posts/Task_02/Task_02.html",
-    "href": "posts/Task_02/Task_02.html",
-    "title": "Task 02 : Clustering",
-    "section": "",
-    "text": "### Task_02 Clustering\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()"
+    "objectID": "index.html#latest-blogs",
+    "href": "index.html#latest-blogs",
+    "title": "Welcome to Tian Yu (Edward) Shiung",
+    "section": "Latest Blogs",
+    "text": "Latest Blogs\nClick here to check out more blogs.\n\n\n\n\n  \n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n\n\n\n\n\n\n\n\n\n\nNov 6, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 04 : Classification\n\n\n\n\n\n\n\n\n\n\n\n\nNov 5, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 02 : Clustering\n\n\n\n\n\n\n\n\n\n\n\n\nOct 31, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\n1-2 Random Variable\n\n\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n\n\n\nOct 24, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\n1-3 Implementation in ML\n\n\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n\n\n\nOct 24, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/Probability Theory/1-3_Implementation.html",
-    "href": "posts/Probability Theory/1-3_Implementation.html",
-    "title": "1-3 Implementation in ML",
+    "objectID": "posts/Task_03/Task_03.html",
+    "href": "posts/Task_03/Task_03.html",
+    "title": "Task 03 : Linear & Non-Linear Regression",
+    "section": "",
+    "text": "### Task_03 Linear & Non-Linear Regression\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts/Task_05/Task_05.html",
+    "href": "posts/Task_05/Task_05.html",
+    "title": "Task 05 : Anomaly / Outlier Detection",
+    "section": "",
+    "text": "### Task_05 Anomaly / Outlier Detection\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts/Probability Theory/1-2_Random Variable.html",
+    "href": "posts/Probability Theory/1-2_Random Variable.html",
+    "title": "1-2 Random Variable",
     "section": "",
     "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
   },
   {
-    "objectID": "posts/Probability Theory/1-3_Implementation.html#random-variable",
-    "href": "posts/Probability Theory/1-3_Implementation.html#random-variable",
-    "title": "1-3 Implementation in ML",
+    "objectID": "posts/Probability Theory/1-2_Random Variable.html#random-variable",
+    "href": "posts/Probability Theory/1-2_Random Variable.html#random-variable",
+    "title": "1-2 Random Variable",
     "section": "",
     "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
   },
   {
-    "objectID": "posts/Probability Theory/1-3_Implementation.html#types-of-random-variables",
-    "href": "posts/Probability Theory/1-3_Implementation.html#types-of-random-variables",
-    "title": "1-3 Implementation in ML",
+    "objectID": "posts/Probability Theory/1-2_Random Variable.html#types-of-random-variables",
+    "href": "posts/Probability Theory/1-2_Random Variable.html#types-of-random-variables",
+    "title": "1-2 Random Variable",
     "section": "Types of Random Variables:",
     "text": "Types of Random Variables:\n\n1. Discrete Random Variable:\n\nA discrete random variable takes on a finite or countably infinite set of distinct values.\nThe probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.\n\n\n\n2. Continuous Random Variable:\n\nA continuous random variable can take on any value within a certain range.\nThe probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.\n\nThe key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner."
   },
@@ -70,45 +84,45 @@
     "text": "Probability Theory and Machine Learning\n\nSupervised Learning\nIn supervised learning, models are typically trained from labeled data, and these models are then used to predict outcomes for new, unlabeled data. Probability theory concepts play a key role in constructing such models, especially in the development of probability models like Bayesian models.\n\n\nUnsupervised Learning\nIn unsupervised learning, models aim to discover patterns in data without relying on labels. Probability theory concepts such as clustering and probability density estimation find applications in unsupervised learning.\n\n\nReinforcement Learning\nReinforcement learning involves agents learning through interaction with an environment. Probability theory concepts like stochastic processes and Markov decision processes are useful for modeling such interactive processes."
   },
   {
-    "objectID": "posts/Probability Theory/1-2_Random Variable.html",
-    "href": "posts/Probability Theory/1-2_Random Variable.html",
-    "title": "1-2 Random Variable",
+    "objectID": "posts/Probability Theory/1-3_Implementation.html",
+    "href": "posts/Probability Theory/1-3_Implementation.html",
+    "title": "1-3 Implementation in ML",
     "section": "",
     "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
   },
   {
-    "objectID": "posts/Probability Theory/1-2_Random Variable.html#random-variable",
-    "href": "posts/Probability Theory/1-2_Random Variable.html#random-variable",
-    "title": "1-2 Random Variable",
+    "objectID": "posts/Probability Theory/1-3_Implementation.html#random-variable",
+    "href": "posts/Probability Theory/1-3_Implementation.html#random-variable",
+    "title": "1-3 Implementation in ML",
     "section": "",
     "text": "A random variable is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment."
   },
   {
-    "objectID": "posts/Probability Theory/1-2_Random Variable.html#types-of-random-variables",
-    "href": "posts/Probability Theory/1-2_Random Variable.html#types-of-random-variables",
-    "title": "1-2 Random Variable",
+    "objectID": "posts/Probability Theory/1-3_Implementation.html#types-of-random-variables",
+    "href": "posts/Probability Theory/1-3_Implementation.html#types-of-random-variables",
+    "title": "1-3 Implementation in ML",
     "section": "Types of Random Variables:",
     "text": "Types of Random Variables:\n\n1. Discrete Random Variable:\n\nA discrete random variable takes on a finite or countably infinite set of distinct values.\nThe probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.\n\n\n\n2. Continuous Random Variable:\n\nA continuous random variable can take on any value within a certain range.\nThe probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.\n\nThe key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner."
   },
   {
-    "objectID": "posts/Task_05/Task_05.html",
-    "href": "posts/Task_05/Task_05.html",
-    "title": "Task 05 : Anomaly / Outlier Detection",
+    "objectID": "posts/Task_02/Task_02.html",
+    "href": "posts/Task_02/Task_02.html",
+    "title": "Task 02 : Clustering",
     "section": "",
-    "text": "### Task_05 Anomaly / Outlier Detection\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()"
+    "text": "### Task_02 Clustering\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n\n\n\n\n\n\n\n Back to top"
   },
   {
-    "objectID": "posts/Task_03/Task_03.html",
-    "href": "posts/Task_03/Task_03.html",
-    "title": "Task 03 : Linear & Non-Linear Regression",
+    "objectID": "posts/Task_04/Task_04.html",
+    "href": "posts/Task_04/Task_04.html",
+    "title": "Task 04 : Classification",
     "section": "",
-    "text": "### Task_03 Linear & Non-Linear Regression\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()"
+    "text": "### Task_04 Classification\n### Testing for Homework Environment\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\n\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n\n\n\n\n\n\n\n Back to top"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Machine Learning Note",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "1-1 Probability Theory\n\n\n\nMachine Learning\n\n\nStatistics\n\n\nPython\n\n\n\nProbability Theory is a branch of mathematics that studies the likelihood or chance of different outcomes in uncertain events.\n\n\n\nEdward Xiong\n\n\n10/23/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-2 Random Variable\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\nEdward Xiong\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-3 Implementation in ML\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\nEdward Xiong\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 02 : Clustering\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n10/31/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n11/2/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 04 : Classification\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n11/5/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n\nMachine Learning\n\n\n\n\n\n\n\nEdward Xiong\n\n\n11/6/23\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "About me\nI am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\n\n\n\n Back to top"
   }
 ]

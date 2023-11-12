@@ -3,12 +3,15 @@ project:
   output-dir: docs
 
 website:
-  title: "Blog"
-  page-navigation: true
-
+  title: "Home"
+  back-to-top-navigation: true
+  reader-mode: true
   navbar:
     background: dark
     collapse: true
+    left:
+      - icon: newspaper
+        href: blog.qmd
     right:
       - about.qmd
       - icon: github
@@ -28,7 +31,6 @@ website:
 
   page-footer:
     center: "© Copyright 2023 Tian Yu Shiung"
-    # background: rgb(242, 194, 82)
     right:
       - icon: github
         href: https://github.com/EdwardShiung
@@ -36,6 +38,8 @@ website:
 format:
   html:
     reference-location: document
-    theme: [slate, custom.scss]
+    theme:
+      light: sandstone
+      dark: [cyborg, custom.scss]
     css: styles.css
     toc: true

@@ -1,0 +1,15 @@
+---
+title: "Blog"
+listing:
+  date-format: short
+  contents: posts/**
+  sort: "date"
+  type: grid
+  max-items: 7
+  page-size: 6
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [date, description, title, reading-time, categories, image]
+title-block-banner: false
+---

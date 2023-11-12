@@ -1,5 +1,5 @@
 ---
-title: "Tian Yu (Edward) Shiung"
+title: "About"
 image: assets/myImage.jpg
 about:
   template: jolla
