@@ -16,8 +16,6 @@ format:
 comments:
   utterances:
     repo: quarto-dev/quarto-web
-    theme: dark-blue
-    issue-term: title
 ---
 
 Probability Theory

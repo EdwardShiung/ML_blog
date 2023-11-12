@@ -16,8 +16,6 @@ jupyter: python3
 comments:
   utterances:
     repo: quarto-dev/quarto-web
-    theme: dark-blue
-    issue-term: title
 ---
 
 Random Variable
