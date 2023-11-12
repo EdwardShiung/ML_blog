@@ -14,8 +14,8 @@ image: ../../assets/pythonImage.jpg
 jupyter: python3
 
 comments:
-  utterances:
-    repo: quarto-dev/quarto-web
+  giscus:
+    repo: EdwardShiung/ml_CS5805
 ---
 
 Random Variable

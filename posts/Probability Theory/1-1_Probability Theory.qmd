@@ -14,8 +14,8 @@ format:
     toc-location: right
 
 comments:
-  utterances:
-    repo: quarto-dev/quarto-web
+  giscus:
+    repo: EdwardShiung/ml_CS5805
 ---
 
 Probability Theory
