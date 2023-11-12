@@ -1,7 +1,4 @@
-/* .sourceCode{
-    background-color: red;
-} */
-
+/* css styles */
 .listing-author{
     color: white;
     font-weight: 800;
@@ -12,12 +9,10 @@
     font-weight: 800;
 }
 
-.timeline-comment{
-    /* background-color: #443e4d; */
-}
 .listing-category{
     font-weight: 500;
 }
+
 .quarto-category{
     font-weight: 800;
 }

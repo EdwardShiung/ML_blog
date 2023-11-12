@@ -35,8 +35,7 @@ website:
 
 format:
   html:
-    page-layout: full
-    theme: [slate]
-    toc: true
+    reference-location: document
+    theme: [slate, custom.scss]
     css: styles.css
-    code-copy: true
+    toc: true
