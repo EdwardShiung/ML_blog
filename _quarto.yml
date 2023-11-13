@@ -19,7 +19,7 @@ website:
         text: blog
         href: blog.qmd
       - text: "{{< fa mug-hot >}} Support Me"
-        href: https://www.buymeacoffee.com/edwardshiung
+        href: https://www.buymeacoffee.com/edwardxiong
     right:
       - icon: file-person
         text: About Me
