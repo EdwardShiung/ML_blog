@@ -18,14 +18,16 @@ website:
         href: blog.qmd
       - text: "{{< fa mug-saucer >}} Support Me"
         href: https://www.buymeacoffee.com/edwardxiong
+        target: _blank
     right:
       - text: "{{< fa address-card >}}About Me"
         href: about.qmd
       - icon: github
         href: https://github.com/EdwardShiung
+        target: _blank
       - icon: linkedin
         href: https://www.linkedin.com/in/tian-yu-edward-shiung-1b4639289/
-
+        target: _blank
   sidebar:
     style: "docked"
     pinned: true
@@ -47,6 +49,7 @@ website:
 format:
   html:
     reference-location: document
+    link-external-newwindow: true
     theme:
       light: sandstone
       dark: [cyborg, custom.scss]

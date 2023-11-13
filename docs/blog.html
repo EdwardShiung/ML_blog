@@ -128,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><i class="fa-solid fa-layer-group" aria-label="layer-group"></i>blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.buymeacoffee.com/edwardxiong" rel="" target="">
+    <a class="nav-link" href="https://www.buymeacoffee.com/edwardxiong" rel="" target="_blank">
  <span class="menu-text"><i class="fa-solid fa-mug-saucer" aria-label="mug-saucer"></i> Support Me</span></a>
   </li>  
 </ul>
@@ -138,12 +138,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i>About Me</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/EdwardShiung" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/EdwardShiung" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/tian-yu-edward-shiung-1b4639289/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/tian-yu-edward-shiung-1b4639289/" rel="" target="_blank"><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -832,6 +832,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->
