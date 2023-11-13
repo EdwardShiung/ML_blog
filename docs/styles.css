@@ -1,13 +1,4 @@
 /* css styles */
-/* .listing-author{
-    color: white;
-    font-weight: 800;
-}
-
-.listing-date{
-    color: white;
-    font-weight: 800;
-} */
 
 .listing-category{
     font-weight: 500;
@@ -17,14 +8,11 @@
     font-weight: 800;
 }
 
-/* .title{
-    color: white;
-} */
+.navbar-dark{
+    background-color: rgb(199, 149, 42);
+}
 
-/* .anchored{
-    color: white;
-} */
-
-/* .no-anchor{
-    color: white;
-} */
+.navbar-logo {
+    margin-left:10px;
+    transform: scale(2);
+}

@@ -1,5 +1,5 @@
 ---
-title: Welcome to Tian Yu (Edward) Shiung
+title: Welcome To My Blog
 sidebar: false
 comments: False
 toc: false
@@ -10,7 +10,7 @@ listing:
   - id: landing-posts
     contents: posts
     type: default
-    max-items: 6
+    max-items: 4
     sort:
       - "date desc"
       - "title asc"
@@ -34,14 +34,25 @@ about:
       href: edwardshiung@gmail.com
 ---
 
-:::{#about-me}
+##
 I am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.
 
 Read more about me [here](about.qmd).
 
 
-:::
+
 Check out the latest project of my github.If you enjoy the projects, please consider giving it a star✨ on [Github](https://github.com/EdwardShiung).
+
+If you want to get a notification about new content, consider subscribing here (it's free!)
+
+:::{.g-col-12 .g-col-md-12}
+```{=html}
+<link rel="stylesheet" href="./html/home_page.css">
+
+<iframe src="https://embeds.beehiiv.com/1f9d8b9c-9942-47ee-b408-0603c6441c27?slim=true" data-test-id="beehiiv-embed" height="52" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent;"></iframe>
+
+```
+:::
 
 :::::{.grid}
 ::::{.g-col-12 .g-col-md-12}

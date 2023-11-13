@@ -3,20 +3,31 @@ project:
   output-dir: docs
 
 website:
-  title: "Home"
+  # title: "Home"
+  favicon: assets/logo.png
   back-to-top-navigation: true
   reader-mode: true
   navbar:
+    logo: assets/logo.png
     background: dark
     collapse: true
     left:
-      - icon: newspaper
+      - icon: house
+        text: "home"
+        href: index.qmd
+      - icon: stack
+        text: blog
         href: blog.qmd
+      - text: "{{< fa mug-hot >}} Support Me"
+        href: https://www.buymeacoffee.com/edwardshiung
     right:
       - icon: file-person
+        text: About Me
         href: about.qmd
       - icon: github
         href: https://github.com/EdwardShiung
+      - icon: linkedin
+        href: https://www.linkedin.com/in/tian-yu-edward-shiung-1b4639289/
 
   sidebar:
     style: "docked"

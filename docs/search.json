@@ -2,23 +2,30 @@
   {
     "objectID": "blog.html",
     "href": "blog.html",
-    "title": "Blog",
+    "title": "",
     "section": "",
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n1-1 Probability Theory\n\n\n2 min\n\n\n\nMachine Learning\n\n\nStatistics\n\n\nPython\n\n\n\nProbability Theory is a branch of mathematics that studies the likelihood or chance of different outcomes in uncertain events.\n\n\n\n10/23/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-2 Random Variable\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1-3 Implementation in ML\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n10/24/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 02 : Clustering\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n10/31/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n11/2/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 04 : Classification\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n11/5/23\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n1 min\n\n\n\nMachine Learning\n\n\n\n\n\n\n\n11/6/23\n\n\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n Back to top"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome to Tian Yu (Edward) Shiung",
+    "title": "Welcome To My Blog",
     "section": "",
-    "text": "LinkedIn\n  \n  \n    \n     GitHub\n  \n  \n    \n     Kaggle\n  \n  \n    \n     Email\n  \n\n      \nI am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\nRead more about me here.\nCheck out the latest project of my github.If you enjoy the projects, please consider giving it a star✨ on Github."
+    "text": "I am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\nRead more about me here.\nCheck out the latest project of my github.If you enjoy the projects, please consider giving it a star✨ on Github.\nIf you want to get a notification about new content, consider subscribing here (it’s free!)"
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "I am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\nRead more about me here.\nCheck out the latest project of my github.If you enjoy the projects, please consider giving it a star✨ on Github.\nIf you want to get a notification about new content, consider subscribing here (it’s free!)"
   },
   {
     "objectID": "index.html#latest-blogs",
     "href": "index.html#latest-blogs",
-    "title": "Welcome to Tian Yu (Edward) Shiung",
+    "title": "Welcome To My Blog",
     "section": "Latest Blogs",
-    "text": "Latest Blogs\nClick here to check out more blogs.\n\n\n\n\n  \n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n\n\n\n\n\n\n\n\n\n\nNov 6, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 04 : Classification\n\n\n\n\n\n\n\n\n\n\n\n\nNov 5, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 02 : Clustering\n\n\n\n\n\n\n\n\n\n\n\n\nOct 31, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\n1-2 Random Variable\n\n\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n\n\n\nOct 24, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\n1-3 Implementation in ML\n\n\n\n\n\nA random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.\n\n\n\n\n\n\nOct 24, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\nNo matching items"
+    "text": "Latest Blogs\nClick here to check out more blogs.\n\n\n\n\n  \n\n\n\n\nTask 05 : Anomaly / Outlier Detection\n\n\n\n\n\n\n\n\n\n\n\nNov 6, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 04 : Classification\n\n\n\n\n\n\n\n\n\n\n\nNov 5, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 03 : Linear & Non-Linear Regression\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\n  \n\n\n\n\nTask 02 : Clustering\n\n\n\n\n\n\n\n\n\n\n\nOct 31, 2023\n\n\nEdward Xiong\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Task_03/Task_03.html",
@@ -121,8 +128,8 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About Me",
+    "title": "",
     "section": "",
-    "text": "About Me\nI am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\n\n\n\n Back to top"
+    "text": "I am currently a MS Computer Science student at Virginia Tech, but prior to that, I worked as a Full-End Developer for Grant Thornton and Ernst & Young in Shanghai, Hong Kong, and Taipei. My main responsibility was to design web applications and financial operating systems, including the EY-Virtual platform. Additionally, I have expertise in utilizing Predictive Data Analytics and Machine Learning to evaluate internal controls and net assets.\n\n\n Back to top"
   }
 ]
