@@ -31,7 +31,7 @@ about:
       href: https://www.kaggle.com/tianyushiung
     - icon: envelope
       text: Email
-      href: edwardshiung@gmail.com
+      href: mailto:mail.edwardshiung@gmail.com
 ---
 
 ##

@@ -12,17 +12,14 @@ website:
     background: dark
     collapse: true
     left:
-      - icon: house
-        text: "home"
+      - text: "{{< fa solid house >}}home"
         href: index.qmd
-      - icon: stack
-        text: blog
+      - text: "{{< fa layer-group >}}blog"
         href: blog.qmd
-      - text: "{{< fa mug-hot >}} Support Me"
+      - text: "{{< fa mug-saucer >}} Support Me"
         href: https://www.buymeacoffee.com/edwardxiong
     right:
-      - icon: file-person
-        text: About Me
+      - text: "{{< fa address-card >}}About Me"
         href: about.qmd
       - icon: github
         href: https://github.com/EdwardShiung
