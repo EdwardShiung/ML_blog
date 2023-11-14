@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">1-4 Example for Discrete Random Variable-02</h1>
+<h1 class="title">1-4 Example for Continuous Random Variable</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Statistics</div>
     <div class="quarto-category">Python</div>
@@ -295,9 +295,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>But how about continus random variable? The typical example in continuous random variable are height and weight. There are lots of common continous random variable in daily life, such as income, time, teamperature, speed and etc. In this section, I will use stock price to be our example because stock price can fluctuate within any real value range. I know some terminologies are hard to understand, but I will do my best to explain each of terminology.</p>
 <section id="continuous-random-variable" class="level1">
 <h1>Continuous Random Variable</h1>
+<p>But how about continus random variable? The typical example in continuous random variable are height and weight. There are lots of common continous random variable in daily life, such as income, time, teamperature, speed and etc. In this section, I will use stock price to be our example because stock price can fluctuate within any real value range. I know some terminologies are hard to understand, but I will do my best to explain each of terminology.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily Return</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean_return <span class="op">=</span> <span class="fl">0.0005</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In financial modeling. daily return is often used as an indicator for analyzing the price movement of financila assets as it provides a more comparable measure than the price itself; Average daily represents the average of daily returns over a period of times. This assumption is often made to simplify models and capture trends in financial assets. Typically, the assumption is that the average the average daily return is constant, based on the assumption that the price movement of the asset is random, steady, and the average doesn’t change over time.</p>
+<p>In financial modeling. daily return is often used as an indicator for analyzing the price movement of financial assets as it provides a more comparable measure than the price itself; Average daily represents the average of daily returns over a period of times. This assumption is often made to simplify models and capture trends in financial assets. Typically, the assumption is that the average the average daily return is constant, based on the assumption that the price movement of the asset is random, steady, and the average doesn’t change over time.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>volatility <span class="op">=</span> <span class="fl">0.02</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

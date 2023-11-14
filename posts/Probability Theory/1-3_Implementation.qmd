@@ -18,9 +18,10 @@ comments:
 jupyter: python3
 ---
 
+# Discrete Random Variable
+
 Based on note 1-2, we know that there are two different kinds of random variables. One is a discrete random variable, which takes on two or more distinct outcomes; the other is a continuous random variable, indicating the probability of the random variable falling within a particular interval. To help you warn up, I will provide you two basic examples and briefly explain what is the differences between them. Let's started!!
 
-# Discrete Random Variable
 The typical example is tossing the coin or rolling the dice. Here, I choose dice example to be the example. In order to get the better result, I roll the dice 100000000 times, which will close to the nature law.
 
 ```{python}
