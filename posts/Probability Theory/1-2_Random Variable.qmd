@@ -9,7 +9,7 @@ format:
     toc: true
     toc-location: right
 categories:
-  - Machine Learning
+  [Machine Learning, Statistics, Python]
 image: ../../assets/pythonImage.jpg
 jupyter: python3
 

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Edward Xiong">
-<meta name="dcterms.date" content="2023-10-24">
-<meta name="description" content="A random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.">
+<meta name="dcterms.date" content="2023-10-25">
+<meta name="description" content="Using basic example to warn up your Discrete Random Variable">
 
-<title>1-3 Implementation in ML</title>
+<title>1-3 Example for Discrete Random Variable-01</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -133,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/Probability Theory/1-1_Probability Theory.html">Statistics</a></li><li class="breadcrumb-item"><a href="../../posts/Probability Theory/1-3_Implementation.html">1-3 Implementation in ML</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/Probability Theory/1-1_Probability Theory.html">Statistics</a></li><li class="breadcrumb-item"><a href="../../posts/Probability Theory/1-3_Implementation.html">1-3 Example for Discrete Random Variable-01</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -169,7 +203,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Probability Theory/1-3_Implementation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">1-3 Implementation in ML</span></a>
+ <span class="menu-text">1-3 Example for Discrete Random Variable-01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Probability Theory/1-4_Implementation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1-4 Example for Discrete Random Variable-02</span></a>
   </div>
 </li>
       </ul>
@@ -200,12 +240,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#random-variable" id="toc-random-variable" class="nav-link active" data-scroll-target="#random-variable">Random Variable</a></li>
-  <li><a href="#types-of-random-variables" id="toc-types-of-random-variables" class="nav-link" data-scroll-target="#types-of-random-variables">Types of Random Variables:</a>
-  <ul class="collapse">
-  <li><a href="#discrete-random-variable" id="toc-discrete-random-variable" class="nav-link" data-scroll-target="#discrete-random-variable">1. Discrete Random Variable:</a></li>
-  <li><a href="#continuous-random-variable" id="toc-continuous-random-variable" class="nav-link" data-scroll-target="#continuous-random-variable">2. Continuous Random Variable:</a></li>
-  </ul></li>
+  <li><a href="#discrete-random-variable" id="toc-discrete-random-variable" class="nav-link active" data-scroll-target="#discrete-random-variable">Discrete Random Variable</a></li>
   </ul>
 </nav>
     </div>
@@ -214,15 +249,16 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">1-3 Implementation in ML</h1>
+<h1 class="title">1-3 Example for Discrete Random Variable-01</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Statistics</div>
+    <div class="quarto-category">Python</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    A random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment.
+    Using basic example to warn up your Discrete Random Variable
   </div>
 </div>
 
@@ -239,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 24, 2023</p>
+      <p class="date">October 25, 2023</p>
     </div>
   </div>
   
@@ -249,29 +285,54 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="random-variable" class="level2">
-<h2 class="anchored" data-anchor-id="random-variable">Random Variable</h2>
-<p>A <strong>random variable</strong> is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment.</p>
-</section>
-<section id="types-of-random-variables" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-random-variables">Types of Random Variables:</h2>
-<section id="discrete-random-variable" class="level3">
-<h3 class="anchored" data-anchor-id="discrete-random-variable">1. Discrete Random Variable:</h3>
-<ul>
-<li>A discrete random variable takes on a finite or countably infinite set of distinct values.</li>
-<li>The probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.</li>
-</ul>
-</section>
-<section id="continuous-random-variable" class="level3">
-<h3 class="anchored" data-anchor-id="continuous-random-variable">2. Continuous Random Variable:</h3>
-<ul>
-<li>A continuous random variable can take on any value within a certain range.</li>
-<li>The probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.</li>
-</ul>
-<p>The key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner.</p>
+<p>Based on note 1-2, we know that there are two different kinds of random variables. One is a discrete random variable, which takes on two or more distinct outcomes; the other is a continuous random variable, indicating the probability of the random variable falling within a particular interval. To help you warn up, I will provide you two basic examples and briefly explain what is the differences between them. Let’s started!!</p>
+<section id="discrete-random-variable" class="level1">
+<h1>Discrete Random Variable</h1>
+<p>The typical example is tossing the coin or rolling the dice. Here, I choose dice example to be the example. In order to get the better result, I roll the dice 100000000 times, which will close to the nature law.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of simulations for rolling the dice</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>num_simulation <span class="op">=</span> <span class="dv">100000000</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Record the number of occurrences for each dice outcome</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {<span class="dv">1</span>:<span class="dv">0</span>, <span class="dv">2</span>:<span class="dv">0</span>, <span class="dv">3</span>:<span class="dv">0</span>, <span class="dv">4</span>:<span class="dv">0</span>, <span class="dv">5</span>:<span class="dv">0</span>, <span class="dv">6</span>:<span class="dv">0</span>}<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate rolling the dice</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(num_simulation):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    roll_result <span class="op">=</span> random.randint(<span class="dv">1</span>,<span class="dv">6</span>)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    results[roll_result] <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the Probability into probabilities</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> {key: value <span class="op">/</span> num_simulation <span class="cf">for</span> key, value <span class="kw">in</span> results.items()}<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate each number probabilities</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dice Number</span><span class="ch">\t</span><span class="st">Probabilities"</span>)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> probabilities.items():</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ch">\t\t</span><span class="sc">{</span>value<span class="sc">:.3f}</span><span class="ss">"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dice Number Probabilities
+1       0.167
+2       0.167
+3       0.167
+4       0.167
+5       0.167
+6       0.167</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Bar Chart demonstrate Probability Distribution</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.bar(probabilities.keys(), probabilities.values())<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Dice Number'</span>)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probability'</span>)<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Dice Probability Distribution'</span>)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="1-3_Implementation_files/figure-html/cell-4-output-1.png" width="597" height="449"></p>
+</div>
+</div>
+<p>As you can see, the outcome of probability is close to average (1/6)</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -637,7 +698,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
 });
 </script>
-<script src="https://utteranc.es/client.js" repo="quarto-dev/quarto-web" issue-term="title" theme="dark-blue" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="EdwardShiung/ml_CS5805" data-repo-id="R_kgDOKplhjQ" data-category="General" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 <footer class="footer">

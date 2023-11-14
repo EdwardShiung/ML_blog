@@ -1,37 +1,59 @@
 ---
-title: 1-3 Implementation in ML
+title: 1-3 Example for Discrete Random Variable-01
 title-block-banner: false
 author: Edward Xiong
-date: '2023-10-24'
-description: "A random variable is a mathematical concept that represents the possible numerical outcomes of a random process or experiment."
+date: '2023-10-25'
+description: Using basic example to warn up your Discrete Random Variable
 format:
   html:
     toc: true
     toc-location: right
 categories:
-  - Machine Learning
+  - Statistics
+  - Python
 image: ../../assets/pythonImage.jpg
-jupyter: python3
-
 comments:
-  utterances:
-    repo: quarto-dev/quarto-web
-    theme: dark-blue
-    issue-term: title
+  giscus:
+    repo: EdwardShiung/ml_CS5805
+jupyter: python3
 ---
 
-Random Variable
--
-A **random variable** is a fundamental concept in probability theory and statistics that allows us to represent and quantify uncertain outcomes of a random process or experiment. It is a variable whose value is subject to variations due to chance or randomness, providing a way to assign numerical values to the possible outcomes of a random experiment.
+Based on note 1-2, we know that there are two different kinds of random variables. One is a discrete random variable, which takes on two or more distinct outcomes; the other is a continuous random variable, indicating the probability of the random variable falling within a particular interval. To help you warn up, I will provide you two basic examples and briefly explain what is the differences between them. Let's started!!
 
-## Types of Random Variables:
+# Discrete Random Variable
+The typical example is tossing the coin or rolling the dice. Here, I choose dice example to be the example. In order to get the better result, I roll the dice 100000000 times, which will close to the nature law.
 
-### 1. Discrete Random Variable:
-   - A discrete random variable takes on a finite or countably infinite set of distinct values.
-   - The probability distribution is described by a Probability Mass Function (PMF), specifying the probability of each possible value.
+```{python}
+import random
+import matplotlib.pyplot as plt
+```
 
-### 2. Continuous Random Variable:
-   - A continuous random variable can take on any value within a certain range.
-   - The probability distribution is described by a Probability Density Function (PDF), indicating the probability of the random variable falling within a particular interval.
+```{python}
+# Number of simulations for rolling the dice
+num_simulation = 100000000;
+# Record the number of occurrences for each dice outcome
+results = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
+# Simulate rolling the dice
+for _ in range(num_simulation):
+    roll_result = random.randint(1,6);
+    results[roll_result] += 1;
+# Calculate the Probability into probabilities
 
-The key purpose of a random variable is to enable the mathematical analysis of uncertain outcomes, allowing the application of probability theory and statistical methods. Random variables are crucial in various fields, providing a framework for modeling and understanding uncertainty in a quantitative manner.
+probabilities = {key: value / num_simulation for key, value in results.items()};
+# Demonstrate each number probabilities
+print("Dice Number\tProbabilities");
+for key, value in probabilities.items():
+    print(f"{key}\t\t{value:.3f}");
+```
+
+```{python}
+# Using Bar Chart demonstrate Probability Distribution
+plt.bar(probabilities.keys(), probabilities.values());
+plt.xlabel('Dice Number');
+plt.ylabel('Probability');
+plt.title('Dice Probability Distribution');
+plt.show();
+```
+
+As you can see, the outcome of probability is close to average (1/6)
+
