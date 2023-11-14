@@ -5,7 +5,7 @@ listing:
   contents: posts/**
   sort: "date"
   type: grid
-  max-items: 7
+  max-items: 8
   page-size: 6
   categories: true
   sort-ui: true
