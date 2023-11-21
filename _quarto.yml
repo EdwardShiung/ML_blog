@@ -38,6 +38,9 @@ website:
       - section: "Statistics"
         contents: posts/Probability Theory/**
       - section: "Machine Learning"
+        contents:
+          - section: "Clustering"
+            contents: posts/Clustering/**
       - section: "Deep Learning"
       - section: "NLP"
       - section:  "Computer Vision"
