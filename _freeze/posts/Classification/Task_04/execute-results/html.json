@@ -1,0 +1,11 @@
+{
+  "hash": "0957982cdeef9c2a6f800b2f2d6be5bd",
+  "result": {
+    "markdown": "---\ntitle: Classification\ntitle-block-banner: false\nauthor: Edward Xiong\ndate: '2023-11-05'\ndescription: Understanding how to detect Anomaly/Outlier\nformat:\n  html:\n    toc: true\n    toc-location: right\ncategories:\n  - Statistics\n  - Python\n  - Machine Learning\nimage: ../../assets/classification.jpg\ncomments:\n  giscus:\n    repo: EdwardShiung/ml_CS5805\n---\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\n### Task_04 Classification\n### Testing for Homework Environment\n```\n:::\n\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n```\n:::\n\n\n::: {.cell execution_count=3}\n``` {.python .cell-code}\ndata = np.random.randn(1000)\nplt.hist(data, bins=20, color='blue', alpha=0.5)\nplt.title('Histogram of Random Data')\nplt.xlabel('Value')\nplt.ylabel('Frequency')\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](Task_04_files/figure-html/cell-4-output-1.png){width=593 height=449}\n:::\n:::\n\n\n",
+    "supporting": [
+      "Task_04_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

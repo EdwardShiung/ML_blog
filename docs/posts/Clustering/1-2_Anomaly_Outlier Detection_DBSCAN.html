@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Edward Xiong">
-<meta name="dcterms.date" content="2023-10-26">
-<meta name="description" content="Using basic example to warn up your Continuous Random Variable">
+<meta name="dcterms.date" content="2023-11-06">
+<meta name="description" content="Understanding how to detect Anomaly/Outlier">
 
-<title>1-4 Example for Continuous Random Variable</title>
+<title>Anomaly/Outlier Detection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,9 +100,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -169,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../posts/Probability Theory/1-1_Probability Theory.html">Statistics</a></li><li class="breadcrumb-item"><a href="../../posts/Probability Theory/1-4_Implementation.html">1-4 Example for Continuous Random Variable</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Machine Learning</li><li class="breadcrumb-item"><a href="../../posts/Clustering/1-1_Clustering_DBSCAN.html">Clustering</a></li><li class="breadcrumb-item"><a href="../../posts/Clustering/1-2_Anomaly_Outlier Detection_DBSCAN.html">Anomaly/Outlier Detection</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -183,13 +184,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Statistics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Probability Theory/1-1_Probability Theory.html" class="sidebar-item-text sidebar-link">
@@ -210,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Probability Theory/1-4_Implementation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/Probability Theory/1-4_Implementation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1-4 Example for Continuous Random Variable</span></a>
   </div>
 </li>
@@ -218,22 +219,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Clustering</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Clustering/1-1_Clustering_DBSCAN.html" class="sidebar-item-text sidebar-link">
@@ -242,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Clustering/1-2_Anomaly_Outlier Detection_DBSCAN.html" class="sidebar-item-text sidebar-link">
+  <a href="../../posts/Clustering/1-2_Anomaly_Outlier Detection_DBSCAN.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Anomaly/Outlier Detection</span></a>
   </div>
 </li>
@@ -306,14 +307,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#continuous-random-variable" id="toc-continuous-random-variable" class="nav-link active" data-scroll-target="#continuous-random-variable">Continuous Random Variable</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#lets-simulate-a-stock-price-in-100-days" id="toc-lets-simulate-a-stock-price-in-100-days" class="nav-link" data-scroll-target="#lets-simulate-a-stock-price-in-100-days">Let’s simulate a stock price in 100 days</a>
-  <ul class="collapse">
-  <li><a href="#seed-value" id="toc-seed-value" class="nav-link" data-scroll-target="#seed-value">- Seed Value</a></li>
-  <li><a href="#average-daily-return-volatility" id="toc-average-daily-return-volatility" class="nav-link" data-scroll-target="#average-daily-return-volatility">- (Average) Daily Return &amp; Volatility</a></li>
-  <li><a href="#gaussian-function" id="toc-gaussian-function" class="nav-link" data-scroll-target="#gaussian-function">- Gaussian Function</a></li>
-  </ul></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -323,16 +319,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">1-4 Example for Continuous Random Variable</h1>
+<h1 class="title">Anomaly/Outlier Detection</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Statistics</div>
     <div class="quarto-category">Python</div>
+    <div class="quarto-category">Machine Learning</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Using basic example to warn up your Continuous Random Variable
+    Understanding how to detect Anomaly/Outlier
   </div>
 </div>
 
@@ -349,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 26, 2023</p>
+      <p class="date">November 6, 2023</p>
     </div>
   </div>
   
@@ -359,97 +356,193 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="continuous-random-variable" class="level1">
-<h1>Continuous Random Variable</h1>
-<p>But how about continus random variable? The typical example in continuous random variable are height and weight. There are lots of common continous random variable in daily life, such as income, time, teamperature, speed and etc. In this section, I will use stock price to be our example because stock price can fluctuate within any real value range. I know some terminologies are hard to understand, but I will do my best to explain each of terminology.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In data science and machine learning, DBSCAN (Density-Based Spatial Clustering of Applications with Noise) is a common clustering algorithm used to uncover cluster structures within data. However, DBSCAN not only identifies clusters but also effectively detects outliers, making it a powerful tool for handling real-world data.</p>
+<p>In DBSCAN, outliers are typically referred to as “noise points” or “outlier points.” These points differ from the main clustering structure and may represent anomalous data or outliers due to errors, noise, or other unknown reasons. DBSCAN distinguishes these outlier points by defining the concepts of “core points” and “reachable points.”</p>
+<p>Based on previous topic, I will keep going to note about how to do anomaly/outlier detection.</p>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<p>The Mall Customer’s data comes from Kaggle website, which will be used mine explanation in DBSCAN. If you want to follow my notes, please download the dataset from here:</p>
+<p>https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachment:image.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">image.png</figcaption>
+</figure>
+</div>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, HTML</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading Data from CSV file</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df  <span class="op">=</span> pd.read_csv(<span class="st">'../../dataset/MallCustomer/Mall_Customers.csv'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Select dataframe:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[[<span class="st">'Age'</span>, <span class="st">'Annual Income (k$)'</span>, <span class="st">'Spending Score (1-100)'</span>]]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Training Data:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X.iloc[:<span class="dv">160</span>,:]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing Data:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> X.iloc[<span class="dv">160</span>:,:]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the Scale</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>X_scale_Income <span class="op">=</span> X_train[<span class="st">'Annual Income (k$)'</span>]<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>X_scale_Age <span class="op">=</span> X_train[<span class="st">'Age'</span>]<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Y_scale_Score <span class="op">=</span> X_train[<span class="st">'Spending Score (1-100)'</span>]<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="lets-simulate-a-stock-price-in-100-days" class="level2">
-<h2 class="anchored" data-anchor-id="lets-simulate-a-stock-price-in-100-days">Let’s simulate a stock price in 100 days</h2>
-<section id="seed-value" class="level3">
-<h3 class="anchored" data-anchor-id="seed-value">- Seed Value</h3>
+<p>Firstly, DBSCAN classifies data points into three types: core points, border points, and outlier points. Core points are data points that have at least min_samples neighboring points within a radius of eps. Border points have fewer than min_samples neighboring points within the eps range but still fall within the range of other core points. Outlier points are data points that are neither core points nor border points.</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the random seed for reproducibility</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">20</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pick eps &amp; min_sample randomly</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps <span class="op">=</span> <span class="fl">13.5</span>, min_samples <span class="op">=</span> <span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dbscan.fit(X_train)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The seed value, such as 20 in this example, is a non-negative integer chosen to initialize the random number generator. If a negative number is used as the seed, it may result in an error in most libraries, and it is generally recommended to use a non-negative integer as the seed value.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the 100 days</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> X_train.copy()<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X_train[<span class="st">'Cluster Status'</span>] <span class="op">=</span> dbscan.labels_<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math display">\[
-\text{Average Daily Return} = \left( \frac{\text{Today's Closing Price} - \text{Previous Day's Closing Price}}{\text{Previous Day's Closing Price}} \right) \times 100
-\]</span></p>
-</section>
-<section id="average-daily-return-volatility" class="level3">
-<h3 class="anchored" data-anchor-id="average-daily-return-volatility">- (Average) Daily Return &amp; Volatility</h3>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily Return</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean_return <span class="op">=</span> <span class="fl">0.0005</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X_train[<span class="st">'Cluster Status'</span>].value_counts().to_frame()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Cluster Status</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>113</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">-1</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<p>In financial modeling. daily return is often used as an indicator for analyzing the price movement of financial assets as it provides a more comparable measure than the price itself; Average daily represents the average of daily returns over a period of times. This assumption is often made to simplify models and capture trends in financial assets. Typically, the assumption is that the average the average daily return is constant, based on the assumption that the price movement of the asset is random, steady, and the average doesn’t change over time.</p>
+</div>
+</div>
+<p>This classification allows DBSCAN to naturally identify and label outliers. Outlier points are those that cannot be assigned to any cluster and may represent rare events, errors, or other unusual phenomena in the data. Through the computation of DBSCAN, we can discover both the main clustering structure and potential outliers without the need to predefine the number of clusters.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>volatility <span class="op">=</span> <span class="fl">0.02</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create subplots for visualization</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="st">"DBSCAN"</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>(ax) <span class="op">=</span> fig.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>x_income <span class="op">=</span> <span class="st">'Annual Income (k$)'</span><span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>x_age <span class="op">=</span> <span class="st">'Age'</span><span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>y_score <span class="op">=</span> <span class="st">'Spending Score (1-100)'</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Ｘ_train[Ｘ_train[<span class="st">'Cluster Status'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>hue <span class="op">=</span> <span class="st">'Cluster Status'</span><span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot for Age and Spending Score</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> x_age,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> y_score,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                data <span class="op">=</span> data,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> hue,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                legend<span class="op">=</span><span class="st">'full'</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">'Set1'</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>ax[<span class="dv">0</span>],</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot for Annual Income and Spending Score</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> x_income,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> y_score,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                data <span class="op">=</span> data,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> hue,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                legend<span class="op">=</span><span class="st">'full'</span>,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">'Set2'</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>ax[<span class="dv">1</span>],</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                s<span class="op">=</span><span class="dv">50</span>)<span class="op">;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="fl">0.05</span>, bottom<span class="op">=</span><span class="fl">0.2</span>, right<span class="op">=</span><span class="fl">0.95</span>, top<span class="op">=</span><span class="fl">0.85</span>, hspace<span class="op">=</span><span class="fl">0.1</span>, wspace<span class="op">=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="1-2_Anomaly_Outlier Detection_DBSCAN_files/figure-html/cell-6-output-1.png" width="681" height="372"></p>
 </div>
-<p>Volatility refers to the degree of variation in the daily returns of a stock or financial asset. High volatility indicates significant daily return changes, while low volatility suggests relatively smaller changes. Volatility is an indicator of risk in the financial markets, and investors and traders often monitor changes in volatility to assess risk levels and adjust their investment portfolios. In many models, volatility is treated as a constant, but in reality, it may vary over time.</p>
+</div>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the Gaussian function to generate simulated daily returns</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> np.random.normal(mean_return, volatility, days)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> np.exp(np.cumsum(returns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>noise  <span class="op">=</span> X_train[X_train[<span class="st">'Cluster Status'</span>] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>]<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here, returns represents the daily returns, and price is the simulated stock price obtained by continuously summing up these returns.</p>
-</section>
-<section id="gaussian-function" class="level3">
-<h3 class="anchored" data-anchor-id="gaussian-function">- Gaussian Function</h3>
-<p>Using the Gaussian function (or normal distribution) to simulate daily returns is based on the assumption of the Central Limit Theorem (CLT) and the simplicity and well-known statistical properties of the normal distribution.</p>
-<p>Central Limit Theorem (CLT): The CLT states that the sum or average of a large number of independent and identically distributed random variables will be approximately normally distributed, regardless of the shape of the original distribution. As daily returns in financial markets are often considered the result of numerous independent and relatively small random events (e.g., trading decisions, market news), the CLT provides a theoretical foundation for using the normal distribution to model daily returns.</p>
-<p>Simplicity and Convenience: The Gaussian function, or normal distribution, is a simple and convenient distribution with known statistical properties. Its bell-shaped curve is easy to work with mathematically, making it a common choice for modeling financial phenomena. Using the normal distribution simplifies mathematical and statistical operations in simulation and analysis.</p>
-<p>The Gaussian function, or normal distribution, is characterized by its probability density function (PDF:</p>
-<p><span class="math display">\[
-f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
-\]</span></p>
-<p>Where:</p>
-<ul>
-<li>μ (mu) is the mean (expected value),</li>
-<li>σ² (sigma squared) is the variance.</li>
-</ul>
-<p>The normal distribution is often referred to as the bell curve due to its characteristic shape. Its predictable properties and widespread occurrence in natural phenomena make it a common choice in financial modeling.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.plot(price, label<span class="op">=</span><span class="st">'Stock Price'</span>, color<span class="op">=</span><span class="st">'b'</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Days'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Stock Price'</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Simulated Stock Price Movement'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create subplots for visualization</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="st">"DBSCAN"</span>)<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(ax) <span class="op">=</span> fig.subplots(nrows <span class="op">=</span> <span class="dv">1</span>, ncols <span class="op">=</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x_income <span class="op">=</span> <span class="st">'Annual Income (k$)'</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x_age <span class="op">=</span> <span class="st">'Age'</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>y_score <span class="op">=</span> <span class="st">'Spending Score (1-100)'</span><span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Ｘ_train[Ｘ_train[<span class="st">'Cluster Status'</span>] <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>hue <span class="op">=</span> <span class="st">'Cluster Status'</span><span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot for Age and Spending Score</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> x_age,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> y_score,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                data <span class="op">=</span> data,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> hue,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                legend<span class="op">=</span><span class="st">'full'</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">'Set1'</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>ax[<span class="dv">0</span>],</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the outlier spot to the graph (Age &amp; Spending Score)</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].scatter(x <span class="op">=</span> x_age,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>              y <span class="op">=</span> y_score,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>              data <span class="op">=</span> noise,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>              label <span class="op">=</span> <span class="st">'-1'</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>              c <span class="op">=</span> <span class="st">'black'</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the legend to the graph</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].legend()<span class="op">;</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot for Annual Income and Spending Score</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> x_income,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> y_score,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                data <span class="op">=</span> data,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> hue,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                legend<span class="op">=</span><span class="st">'full'</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">'Set2'</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>ax[<span class="dv">1</span>],</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>                s<span class="op">=</span><span class="dv">50</span>)<span class="op">;</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the outlier spot to the graph (Annual Income &amp; Spending Score)</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].scatter(x <span class="op">=</span> x_age,</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>              y <span class="op">=</span> y_score,</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>              data <span class="op">=</span> noise,</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>              label <span class="op">=</span> <span class="st">'-1'</span>,</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>              c <span class="op">=</span> <span class="st">'black'</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="fl">0.05</span>, bottom<span class="op">=</span><span class="fl">0.2</span>, right<span class="op">=</span><span class="fl">0.95</span>, top<span class="op">=</span><span class="fl">0.85</span>, hspace<span class="op">=</span><span class="fl">0.1</span>, wspace<span class="op">=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="1-4_Implementation_files/figure-html/cell-8-output-1.png" width="597" height="449"></p>
+<p><img src="1-2_Anomaly_Outlier Detection_DBSCAN_files/figure-html/cell-8-output-1.png" width="681" height="372"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the probability density curve of daily returns</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.hist(returns, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'b'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the probability density function of the normal distribution as a reference</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>xmin, xmax <span class="op">=</span> plt.xlim()</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(xmin, xmax, <span class="dv">100</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> norm.pdf(x, mean_return, volatility)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, p, <span class="st">'k'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Daily Returns'</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probability Density'</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Probability Density Function of Daily Returns'</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="1-4_Implementation_files/figure-html/cell-9-output-1.png" width="585" height="449"></p>
-</div>
-</div>
-<p>In this example, we use the normal distribution to simulate daily returns, and then simulate the variation in stock prices by continuously accumulating these returns. It’s important to note that this is a simple simulation, and real stock prices are influenced by a more complex set of factors.</p>
+<p>As you can see, the black spots represent outliers (not belonging to any cluster). Therefore, DBSCAN is not only an excellent clustering algorithm but also an effective tool for detecting outliers, making it valuable for addressing various challenges in handling real-world data.</p>
 
 
-</section>
 </section>
 </section>
 

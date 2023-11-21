@@ -7,17 +7,17 @@
       "/posts/Probability Theory/1-3_Implementation.html",
       "/posts/Probability Theory/1-4_Implementation.html",
       "/posts/Clustering/1-1_Clustering_DBSCAN.html",
-      "/posts/Task_03/Task_03.html",
-      "/posts/Task_04/Task_04.html",
-      "/posts/Task_05/Task_05.html"
+      "/posts/Linear_Nonlinear_Regression/Linear_Nonlinear_Regression.html",
+      "/posts/Classification/Classification.html",
+      "/posts/Clustering/1-2_Anomaly_Outlier Detection_DBSCAN.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
-      "/posts/Task_05/Task_05.html",
-      "/posts/Task_04/Task_04.html",
-      "/posts/Task_03/Task_03.html",
+      "/posts/Clustering/1-2_Anomaly_Outlier Detection_DBSCAN.html",
+      "/posts/Classification/Classification.html",
+      "/posts/Linear_Nonlinear_Regression/Linear_Nonlinear_Regression.html",
       "/posts/Clustering/1-1_Clustering_DBSCAN.html",
       "/posts/Probability Theory/1-4_Implementation.html",
       "/posts/Probability Theory/1-3_Implementation.html",

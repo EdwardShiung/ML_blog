@@ -1,0 +1,40 @@
+---
+title: Classification
+title-block-banner: false
+author: Edward Xiong
+date: '2023-11-05'
+description: Understanding how to detect Anomaly/Outlier
+format:
+  html:
+    toc: true
+    toc-location: right
+categories:
+  - Statistics
+  - Python
+  - Machine Learning
+image: ../../assets/classification.jpg
+comments:
+  giscus:
+    repo: EdwardShiung/ml_CS5805
+jupyter: python3
+---
+
+```{python}
+### Task_04 Classification
+### Testing for Homework Environment
+```
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+```
+
+```{python}
+data = np.random.randn(1000)
+plt.hist(data, bins=20, color='blue', alpha=0.5)
+plt.title('Histogram of Random Data')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+```
