@@ -3,7 +3,7 @@ title: Classification
 title-block-banner: false
 author: Edward Xiong
 date: '2023-11-05'
-description: Understanding how to detect Anomaly/Outlier
+description: Using Heart Disease Dataset to Predict the Patient by Classification
 format:
   html:
     toc: true
@@ -19,22 +19,294 @@ comments:
 jupyter: python3
 ---
 
-```{python}
-### Task_04 Classification
-### Testing for Homework Environment
-```
+# Introduction
+Machine Learning process can be outlined as follow:
+
+1. Problem Definition
+    - What problem are we trying to solve? 
+2. Data
+    - What data do we have? Do we need to do data cleaning?
+3. Evalution
+    - Which problem define well?
+4. Features
+    - What feature should we model?
+5. Modelling
+    - What kind of model should we use?
+6. Experiment
+    - Which model is suitable? How can we tune our model?
+
+Once we define the problem, we could also know which questions could be classified the type of estimator. Here will provide a brieft estimator map for solving machine leaning problem.
+
+https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html
+
+## Problem Definition
+Our case is about heart disease predict. The problem is be solved by the **binary classification**.
+
+In a statement,
+
+> Based on clinical parameters for a patient, can we predict whether or not they have heart disease?
+
+## Libraries Section:
+
+* [pandas](https://pandas.pydata.org/)
+* [NumPy](https://numpy.org/)
+* [Matplotlib](https://matplotlib.org/)
+* [seaborn](https://seaborn.pydata.org/) 
+* [Scikit-Learn](https://scikit-learn.org/stable/) 
 
 ```{python}
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
+import seaborn as sns
+```
+
+## Models
+Above question let us know that we will use classification, and we could take a reference from [Scikit-Learn Map](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) to choose model we want to compare.
+
+In our cases, we choose Logistic Regression model, KNN model, and Random Forest Classifer.
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+```
+
+## Model Evalution Library
+
+```{python}
+from sklearn.model_selection import train_test_split
+```
+
+## Data
+The origin data comes from the UCI Machine Learning Repository. 
+>Here is the link: https://archive.ics.uci.edu/ml/datasets/heart+Disease
+
+In addition, we found this data from Kaggle.
+>Here is the link: https://www.kaggle.com/datasets/sumaiyatasmeem/heart-disease-classification-dataset
+
+This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them.
+
+So here, we create the data dictionary:
+
+**Data Dictionary**
+
+1. age - age in years
+2. sex - (1 = male; 0 = female)
+3. cp - chest pain type
+    * 0: Typical angina: chest pain related decrease blood supply to the heart
+    * 1: Atypical angina: chest pain not related to heart
+    * 2: Non-anginal pain: typically esophageal spasms (non heart related)
+    * 3: Asymptomatic: chest pain not showing signs of disease
+4. trestbps - resting blood pressure (in mm Hg on admission to the hospital) anything above 130-140 is typically cause for concern
+5. chol - serum cholestoral in mg/dl
+    * serum = LDL + HDL + .2 * triglycerides
+    * above 200 is cause for concern
+6. fbs - (fasting blood sugar > 120 mg/dl) (1 = true; 0 = false)
+    * '>126' mg/dL signals diabetes
+7. restecg - resting electrocardiographic results
+    * 0: Nothing to note
+    * 1: ST-T Wave abnormality
+        * can range from mild symptoms to severe problems
+        * signals non-normal heart beat
+    * 2: Possible or definite left ventricular hypertrophy
+        * Enlarged heart's main pumping chamber
+8. thalach - maximum heart rate achieved
+9. exang - exercise induced angina (1 = yes; 0 = no)
+10. oldpeak - ST depression induced by exercise relative to rest looks at stress of heart during excercise unhealthy heart will stress more
+11. slope - the slope of the peak exercise ST segment
+    * 0: Upsloping: better heart rate with excercise (uncommon)
+    * 1: Flatsloping: minimal change (typical healthy heart)
+    * 2: Downslopins: signs of unhealthy heart
+12. ca - number of major vessels (0-3) colored by flourosopy
+    * colored vessel means the doctor can see the blood passing through
+    * the more blood movement the better (no clots)
+13. thal - thalium stress result
+    * 1,3: normal
+    * 6: fixed defect: used to be defect but ok now
+    * 7: reversable defect: no proper blood movement when excercising
+14. target - have disease or not (1=yes, 0=no) (= the predicted attribute)
+
+```{python}
+df = pd.read_csv('../../dataset/HeartDisease/heart-disease.csv');
+df
+```
+
+## Explore Data Analysis (EDA)
+
+Once we've imported dataset, we could start to explore the dataset to find some pattern. When we get a dataset, it's hard to tell and understand the situation. That's why we do some visualization for prelimary research questions in the beginning, and then, we can observer the correletion between independent variables and dependent variables. 
+
+Here, we want to fouce on the 3 classification algorithms applying in our cases, so we will breeze throught it and just demonstrate one situation to find a pattern. For example:
+
+> Does chest pain (cp), age, or other attributes relate to whether or not someone has heart disease?
+
+In the above hypothesis, we could use **correletion matrix**. 
+
+So, **what's correletion matrix?** It's a big table telling us how each independent variable is related to each other.
+
+ps. You can take above reference to know what is cp.
+
+### Correletion Matrix
+
+```{python}
+df.corr()
 ```
 
 ```{python}
-data = np.random.randn(1000)
-plt.hist(data, bins=20, color='blue', alpha=0.5)
-plt.title('Histogram of Random Data')
-plt.xlabel('Value')
-plt.ylabel('Frequency')
-plt.show()
+# Visualized Correletion Matrix by Heatmap
+correletion_matrix = df.corr()
+fig, ax = plt.subplots(figsize = (12, 9));
+ax = sns.heatmap(correletion_matrix,
+                 annot = True,
+                 fmt = '.2f',
+                 cmap = 'YlOrRd');
 ```
+
+A higher positve value means a potential possitive correletion; a higher negative means a potential negative correletion.
+
+So, based on the contribution matrix, as "cp" goes up, the "target value" should also goes up.
+
+We can do a basic graph to visualize the relation between cp and target.
+
+```{python}
+# Crosstab for cp and target
+pd.crosstab(df.cp, df.target).plot(kind = 'bar',
+                                   figsize = (12, 9),
+                                   color = ['lightblue', 'salmon']);
+plt.title('Heart Disease Frequence');
+plt.xlabel('Chest Pain Type');
+plt.ylabel('Amount');
+plt.legend(['No Disease', 'Disease']);
+plt.xticks(rotation = 0);
+```
+
+Even though, Chest Pain Type 3 goes down, the ratio of disease to no disease is still much higher. 
+
+Correlation Matrix could be a insight that we want to sort of figure out on our own. This is the purpose of EDA.
+
+## Preparing Data for Machine Learning Model
+
+Before Modeling, we need to do two things:
+
+1. Split the dataset into features & labels
+2. Split the dataset into trainning dataset & testing dataset
+
+Why? 
+
+First, because we want to do binary classification, spliting the dataset into features and labels is very important.
+Second, if we don't split the dataset into trainning dataset & testing dataset, how would you know know how well your model goes on a new patient not included in the original full data?
+
+```{python}
+# Split the dataset into features and label
+X = df.drop('target', axis = 1);
+y = df['target']
+```
+
+```{python}
+X
+```
+
+```{python}
+y
+```
+
+```{python}
+# Split the dataset into trainning dataset & testing dataset
+np.random.seed(24)
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.2)
+```
+
+```{python}
+X_train
+```
+
+```{python}
+X_test
+```
+
+```{python}
+y_train
+```
+
+```{python}
+y_test
+```
+
+Now we've had our data split into training and testing dataset, and we could use 3 different machine learning models to demonstrate the preliminary model.
+
+1. Logistic Regression
+2. K-Neareast Neighbors Classifer
+3. Random Forest Classifier
+
+In this note, we just compare 3 different classification models, so we don't do tuning the model find the important feature or others.
+
+```{python}
+# Save Model Score
+M_Score = {};
+```
+
+### Logistic Regression Model
+
+```{python}
+# Set Random Seed
+np.random.seed(24);
+
+# Logistic Regression Model
+log_reg_model = {'Logistic Regression': LogisticRegression()};
+
+# Fit the model to the training data
+key = list(log_reg_model.keys())[0];
+value = log_reg_model[key];
+value.fit(X_train, y_train);
+M_Score [key] = value.score(X_test, y_test);
+
+M_Score
+```
+
+### KNN Model
+
+```{python}
+# Set Random Seed
+np.random.seed(24);
+
+# KNN Model
+log_reg_model = {'KNN': KNeighborsClassifier()};
+
+# Fit the model to the training data
+key = list(log_reg_model.keys())[0];
+value = log_reg_model[key];
+value.fit(X_train, y_train);
+M_Score [key] = value.score(X_test, y_test);
+
+M_Score
+```
+
+### Random Forest Model
+
+```{python}
+# Set Random Seed
+np.random.seed(24);
+
+# KNN Model
+log_reg_model = {'Random Forest': RandomForestClassifier()};
+
+# Fit the model to the training data
+key = list(log_reg_model.keys())[0];
+value = log_reg_model[key];
+value.fit(X_train, y_train);
+M_Score [key] = value.score(X_test, y_test);
+
+M_Score
+```
+
+### Model Comparison
+
+```{python}
+M_Compare = pd.DataFrame(M_Score, index = ['Accuracy Score']);
+M_Compare.T.plot.bar();
+plt.xticks(rotation = 0);
+```
+
+Here, we get the accuracy score for 3 different models. As you can see, this is the preliminary results by 3 different models. If we want the result fall into 95% or higher, we need to know tuning or finding important features.
+

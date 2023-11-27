@@ -8,7 +8,7 @@
 
 <meta name="author" content="Edward Xiong">
 <meta name="dcterms.date" content="2023-11-05">
-<meta name="description" content="Understanding how to detect Anomaly/Outlier">
+<meta name="description" content="Using Heart Disease Dataset to Predict the Patient by Classification">
 
 <title>Classification</title>
 <style>
@@ -100,6 +100,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -300,7 +303,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#problem-definition" id="toc-problem-definition" class="nav-link" data-scroll-target="#problem-definition">Problem Definition</a></li>
+  <li><a href="#libraries-section" id="toc-libraries-section" class="nav-link" data-scroll-target="#libraries-section">Libraries Section:</a></li>
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
+  <li><a href="#model-evalution-library" id="toc-model-evalution-library" class="nav-link" data-scroll-target="#model-evalution-library">Model Evalution Library</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#explore-data-analysis-eda" id="toc-explore-data-analysis-eda" class="nav-link" data-scroll-target="#explore-data-analysis-eda">Explore Data Analysis (EDA)</a>
+  <ul class="collapse">
+  <li><a href="#correletion-matrix" id="toc-correletion-matrix" class="nav-link" data-scroll-target="#correletion-matrix">Correletion Matrix</a></li>
+  </ul></li>
+  <li><a href="#preparing-data-for-machine-learning-model" id="toc-preparing-data-for-machine-learning-model" class="nav-link" data-scroll-target="#preparing-data-for-machine-learning-model">Preparing Data for Machine Learning Model</a>
+  <ul class="collapse">
+  <li><a href="#logistic-regression-model" id="toc-logistic-regression-model" class="nav-link" data-scroll-target="#logistic-regression-model">Logistic Regression Model</a></li>
+  <li><a href="#knn-model" id="toc-knn-model" class="nav-link" data-scroll-target="#knn-model">KNN Model</a></li>
+  <li><a href="#random-forest-model" id="toc-random-forest-model" class="nav-link" data-scroll-target="#random-forest-model">Random Forest Model</a></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">Model Comparison</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -317,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Understanding how to detect Anomaly/Outlier
+    Using Heart Disease Dataset to Predict the Patient by Classification
   </div>
 </div>
 
@@ -344,28 +371,1480 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Machine Learning process can be outlined as follow:</p>
+<ol type="1">
+<li>Problem Definition
+<ul>
+<li>What problem are we trying to solve?</li>
+</ul></li>
+<li>Data
+<ul>
+<li>What data do we have? Do we need to do data cleaning?</li>
+</ul></li>
+<li>Evalution
+<ul>
+<li>Which problem define well?</li>
+</ul></li>
+<li>Features
+<ul>
+<li>What feature should we model?</li>
+</ul></li>
+<li>Modelling
+<ul>
+<li>What kind of model should we use?</li>
+</ul></li>
+<li>Experiment
+<ul>
+<li>Which model is suitable? How can we tune our model?</li>
+</ul></li>
+</ol>
+<p>Once we define the problem, we could also know which questions could be classified the type of estimator. Here will provide a brieft estimator map for solving machine leaning problem.</p>
+<p>https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html</p>
+<section id="problem-definition" class="level2">
+<h2 class="anchored" data-anchor-id="problem-definition">Problem Definition</h2>
+<p>Our case is about heart disease predict. The problem is be solved by the <strong>binary classification</strong>.</p>
+<p>In a statement,</p>
+<blockquote class="blockquote">
+<p>Based on clinical parameters for a patient, can we predict whether or not they have heart disease?</p>
+</blockquote>
+</section>
+<section id="libraries-section" class="level2">
+<h2 class="anchored" data-anchor-id="libraries-section">Libraries Section:</h2>
+<ul>
+<li><a href="https://pandas.pydata.org/">pandas</a></li>
+<li><a href="https://numpy.org/">NumPy</a></li>
+<li><a href="https://matplotlib.org/">Matplotlib</a></li>
+<li><a href="https://seaborn.pydata.org/">seaborn</a></li>
+<li><a href="https://scikit-learn.org/stable/">Scikit-Learn</a></li>
+</ul>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Task_04 Classification</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">### Testing for Homework Environment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models</h2>
+<p>Above question let us know that we will use classification, and we could take a reference from <a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">Scikit-Learn Map</a> to choose model we want to compare.</p>
+<p>In our cases, we choose Logistic Regression model, KNN model, and Random Forest Classifer.</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="model-evalution-library" class="level2">
+<h2 class="anchored" data-anchor-id="model-evalution-library">Model Evalution Library</h2>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.randn(<span class="dv">1000</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.hist(data, bins<span class="op">=</span><span class="dv">20</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogram of Random Data'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Value'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The origin data comes from the UCI Machine Learning Repository. &gt;Here is the link: https://archive.ics.uci.edu/ml/datasets/heart+Disease</p>
+<p>In addition, we found this data from Kaggle. &gt;Here is the link: https://www.kaggle.com/datasets/sumaiyatasmeem/heart-disease-classification-dataset</p>
+<p>This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them.</p>
+<p>So here, we create the data dictionary:</p>
+<p><strong>Data Dictionary</strong></p>
+<ol type="1">
+<li>age - age in years</li>
+<li>sex - (1 = male; 0 = female)</li>
+<li>cp - chest pain type
+<ul>
+<li>0: Typical angina: chest pain related decrease blood supply to the heart</li>
+<li>1: Atypical angina: chest pain not related to heart</li>
+<li>2: Non-anginal pain: typically esophageal spasms (non heart related)</li>
+<li>3: Asymptomatic: chest pain not showing signs of disease</li>
+</ul></li>
+<li>trestbps - resting blood pressure (in mm Hg on admission to the hospital) anything above 130-140 is typically cause for concern</li>
+<li>chol - serum cholestoral in mg/dl
+<ul>
+<li>serum = LDL + HDL + .2 * triglycerides</li>
+<li>above 200 is cause for concern</li>
+</ul></li>
+<li>fbs - (fasting blood sugar &gt; 120 mg/dl) (1 = true; 0 = false)
+<ul>
+<li>‘&gt;126’ mg/dL signals diabetes</li>
+</ul></li>
+<li>restecg - resting electrocardiographic results
+<ul>
+<li>0: Nothing to note</li>
+<li>1: ST-T Wave abnormality
+<ul>
+<li>can range from mild symptoms to severe problems</li>
+<li>signals non-normal heart beat</li>
+</ul></li>
+<li>2: Possible or definite left ventricular hypertrophy
+<ul>
+<li>Enlarged heart’s main pumping chamber</li>
+</ul></li>
+</ul></li>
+<li>thalach - maximum heart rate achieved</li>
+<li>exang - exercise induced angina (1 = yes; 0 = no)</li>
+<li>oldpeak - ST depression induced by exercise relative to rest looks at stress of heart during excercise unhealthy heart will stress more</li>
+<li>slope - the slope of the peak exercise ST segment
+<ul>
+<li>0: Upsloping: better heart rate with excercise (uncommon)</li>
+<li>1: Flatsloping: minimal change (typical healthy heart)</li>
+<li>2: Downslopins: signs of unhealthy heart</li>
+</ul></li>
+<li>ca - number of major vessels (0-3) colored by flourosopy
+<ul>
+<li>colored vessel means the doctor can see the blood passing through</li>
+<li>the more blood movement the better (no clots)</li>
+</ul></li>
+<li>thal - thalium stress result
+<ul>
+<li>1,3: normal</li>
+<li>6: fixed defect: used to be defect but ok now</li>
+<li>7: reversable defect: no proper blood movement when excercising</li>
+</ul></li>
+<li>target - have disease or not (1=yes, 0=no) (= the predicted attribute)</li>
+</ol>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../dataset/HeartDisease/heart-disease.csv'</span>)<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">cp</th>
+<th data-quarto-table-cell-role="th">trestbps</th>
+<th data-quarto-table-cell-role="th">chol</th>
+<th data-quarto-table-cell-role="th">fbs</th>
+<th data-quarto-table-cell-role="th">restecg</th>
+<th data-quarto-table-cell-role="th">thalach</th>
+<th data-quarto-table-cell-role="th">exang</th>
+<th data-quarto-table-cell-role="th">oldpeak</th>
+<th data-quarto-table-cell-role="th">slope</th>
+<th data-quarto-table-cell-role="th">ca</th>
+<th data-quarto-table-cell-role="th">thal</th>
+<th data-quarto-table-cell-role="th">target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>63</td>
+<td>1</td>
+<td>3</td>
+<td>145</td>
+<td>233</td>
+<td>1</td>
+<td>0</td>
+<td>150</td>
+<td>0</td>
+<td>2.3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>37</td>
+<td>1</td>
+<td>2</td>
+<td>130</td>
+<td>250</td>
+<td>0</td>
+<td>1</td>
+<td>187</td>
+<td>0</td>
+<td>3.5</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>41</td>
+<td>0</td>
+<td>1</td>
+<td>130</td>
+<td>204</td>
+<td>0</td>
+<td>0</td>
+<td>172</td>
+<td>0</td>
+<td>1.4</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>56</td>
+<td>1</td>
+<td>1</td>
+<td>120</td>
+<td>236</td>
+<td>0</td>
+<td>1</td>
+<td>178</td>
+<td>0</td>
+<td>0.8</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>57</td>
+<td>0</td>
+<td>0</td>
+<td>120</td>
+<td>354</td>
+<td>0</td>
+<td>1</td>
+<td>163</td>
+<td>1</td>
+<td>0.6</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">298</td>
+<td>57</td>
+<td>0</td>
+<td>0</td>
+<td>140</td>
+<td>241</td>
+<td>0</td>
+<td>1</td>
+<td>123</td>
+<td>1</td>
+<td>0.2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">299</td>
+<td>45</td>
+<td>1</td>
+<td>3</td>
+<td>110</td>
+<td>264</td>
+<td>0</td>
+<td>1</td>
+<td>132</td>
+<td>0</td>
+<td>1.2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">300</td>
+<td>68</td>
+<td>1</td>
+<td>0</td>
+<td>144</td>
+<td>193</td>
+<td>1</td>
+<td>1</td>
+<td>141</td>
+<td>0</td>
+<td>3.4</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">301</td>
+<td>57</td>
+<td>1</td>
+<td>0</td>
+<td>130</td>
+<td>131</td>
+<td>0</td>
+<td>1</td>
+<td>115</td>
+<td>1</td>
+<td>1.2</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">302</td>
+<td>57</td>
+<td>0</td>
+<td>1</td>
+<td>130</td>
+<td>236</td>
+<td>0</td>
+<td>0</td>
+<td>174</td>
+<td>0</td>
+<td>0.0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>303 rows × 14 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="explore-data-analysis-eda" class="level2">
+<h2 class="anchored" data-anchor-id="explore-data-analysis-eda">Explore Data Analysis (EDA)</h2>
+<p>Once we’ve imported dataset, we could start to explore the dataset to find some pattern. When we get a dataset, it’s hard to tell and understand the situation. That’s why we do some visualization for prelimary research questions in the beginning, and then, we can observer the correletion between independent variables and dependent variables.</p>
+<p>Here, we want to fouce on the 3 classification algorithms applying in our cases, so we will breeze throught it and just demonstrate one situation to find a pattern. For example:</p>
+<blockquote class="blockquote">
+<p>Does chest pain (cp), age, or other attributes relate to whether or not someone has heart disease?</p>
+</blockquote>
+<p>In the above hypothesis, we could use <strong>correletion matrix</strong>.</p>
+<p>So, <strong>what’s correletion matrix?</strong> It’s a big table telling us how each independent variable is related to each other.</p>
+<p>ps. You can take above reference to know what is cp.</p>
+<section id="correletion-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correletion-matrix">Correletion Matrix</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">cp</th>
+<th data-quarto-table-cell-role="th">trestbps</th>
+<th data-quarto-table-cell-role="th">chol</th>
+<th data-quarto-table-cell-role="th">fbs</th>
+<th data-quarto-table-cell-role="th">restecg</th>
+<th data-quarto-table-cell-role="th">thalach</th>
+<th data-quarto-table-cell-role="th">exang</th>
+<th data-quarto-table-cell-role="th">oldpeak</th>
+<th data-quarto-table-cell-role="th">slope</th>
+<th data-quarto-table-cell-role="th">ca</th>
+<th data-quarto-table-cell-role="th">thal</th>
+<th data-quarto-table-cell-role="th">target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">age</td>
+<td>1.000000</td>
+<td>-0.098447</td>
+<td>-0.068653</td>
+<td>0.279351</td>
+<td>0.213678</td>
+<td>0.121308</td>
+<td>-0.116211</td>
+<td>-0.398522</td>
+<td>0.096801</td>
+<td>0.210013</td>
+<td>-0.168814</td>
+<td>0.276326</td>
+<td>0.068001</td>
+<td>-0.225439</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">sex</td>
+<td>-0.098447</td>
+<td>1.000000</td>
+<td>-0.049353</td>
+<td>-0.056769</td>
+<td>-0.197912</td>
+<td>0.045032</td>
+<td>-0.058196</td>
+<td>-0.044020</td>
+<td>0.141664</td>
+<td>0.096093</td>
+<td>-0.030711</td>
+<td>0.118261</td>
+<td>0.210041</td>
+<td>-0.280937</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cp</td>
+<td>-0.068653</td>
+<td>-0.049353</td>
+<td>1.000000</td>
+<td>0.047608</td>
+<td>-0.076904</td>
+<td>0.094444</td>
+<td>0.044421</td>
+<td>0.295762</td>
+<td>-0.394280</td>
+<td>-0.149230</td>
+<td>0.119717</td>
+<td>-0.181053</td>
+<td>-0.161736</td>
+<td>0.433798</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">trestbps</td>
+<td>0.279351</td>
+<td>-0.056769</td>
+<td>0.047608</td>
+<td>1.000000</td>
+<td>0.123174</td>
+<td>0.177531</td>
+<td>-0.114103</td>
+<td>-0.046698</td>
+<td>0.067616</td>
+<td>0.193216</td>
+<td>-0.121475</td>
+<td>0.101389</td>
+<td>0.062210</td>
+<td>-0.144931</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">chol</td>
+<td>0.213678</td>
+<td>-0.197912</td>
+<td>-0.076904</td>
+<td>0.123174</td>
+<td>1.000000</td>
+<td>0.013294</td>
+<td>-0.151040</td>
+<td>-0.009940</td>
+<td>0.067023</td>
+<td>0.053952</td>
+<td>-0.004038</td>
+<td>0.070511</td>
+<td>0.098803</td>
+<td>-0.085239</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">fbs</td>
+<td>0.121308</td>
+<td>0.045032</td>
+<td>0.094444</td>
+<td>0.177531</td>
+<td>0.013294</td>
+<td>1.000000</td>
+<td>-0.084189</td>
+<td>-0.008567</td>
+<td>0.025665</td>
+<td>0.005747</td>
+<td>-0.059894</td>
+<td>0.137979</td>
+<td>-0.032019</td>
+<td>-0.028046</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">restecg</td>
+<td>-0.116211</td>
+<td>-0.058196</td>
+<td>0.044421</td>
+<td>-0.114103</td>
+<td>-0.151040</td>
+<td>-0.084189</td>
+<td>1.000000</td>
+<td>0.044123</td>
+<td>-0.070733</td>
+<td>-0.058770</td>
+<td>0.093045</td>
+<td>-0.072042</td>
+<td>-0.011981</td>
+<td>0.137230</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">thalach</td>
+<td>-0.398522</td>
+<td>-0.044020</td>
+<td>0.295762</td>
+<td>-0.046698</td>
+<td>-0.009940</td>
+<td>-0.008567</td>
+<td>0.044123</td>
+<td>1.000000</td>
+<td>-0.378812</td>
+<td>-0.344187</td>
+<td>0.386784</td>
+<td>-0.213177</td>
+<td>-0.096439</td>
+<td>0.421741</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">exang</td>
+<td>0.096801</td>
+<td>0.141664</td>
+<td>-0.394280</td>
+<td>0.067616</td>
+<td>0.067023</td>
+<td>0.025665</td>
+<td>-0.070733</td>
+<td>-0.378812</td>
+<td>1.000000</td>
+<td>0.288223</td>
+<td>-0.257748</td>
+<td>0.115739</td>
+<td>0.206754</td>
+<td>-0.436757</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">oldpeak</td>
+<td>0.210013</td>
+<td>0.096093</td>
+<td>-0.149230</td>
+<td>0.193216</td>
+<td>0.053952</td>
+<td>0.005747</td>
+<td>-0.058770</td>
+<td>-0.344187</td>
+<td>0.288223</td>
+<td>1.000000</td>
+<td>-0.577537</td>
+<td>0.222682</td>
+<td>0.210244</td>
+<td>-0.430696</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">slope</td>
+<td>-0.168814</td>
+<td>-0.030711</td>
+<td>0.119717</td>
+<td>-0.121475</td>
+<td>-0.004038</td>
+<td>-0.059894</td>
+<td>0.093045</td>
+<td>0.386784</td>
+<td>-0.257748</td>
+<td>-0.577537</td>
+<td>1.000000</td>
+<td>-0.080155</td>
+<td>-0.104764</td>
+<td>0.345877</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">ca</td>
+<td>0.276326</td>
+<td>0.118261</td>
+<td>-0.181053</td>
+<td>0.101389</td>
+<td>0.070511</td>
+<td>0.137979</td>
+<td>-0.072042</td>
+<td>-0.213177</td>
+<td>0.115739</td>
+<td>0.222682</td>
+<td>-0.080155</td>
+<td>1.000000</td>
+<td>0.151832</td>
+<td>-0.391724</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">thal</td>
+<td>0.068001</td>
+<td>0.210041</td>
+<td>-0.161736</td>
+<td>0.062210</td>
+<td>0.098803</td>
+<td>-0.032019</td>
+<td>-0.011981</td>
+<td>-0.096439</td>
+<td>0.206754</td>
+<td>0.210244</td>
+<td>-0.104764</td>
+<td>0.151832</td>
+<td>1.000000</td>
+<td>-0.344029</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">target</td>
+<td>-0.225439</td>
+<td>-0.280937</td>
+<td>0.433798</td>
+<td>-0.144931</td>
+<td>-0.085239</td>
+<td>-0.028046</td>
+<td>0.137230</td>
+<td>0.421741</td>
+<td>-0.436757</td>
+<td>-0.430696</td>
+<td>0.345877</td>
+<td>-0.391724</td>
+<td>-0.344029</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualized Correletion Matrix by Heatmap</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>correletion_matrix <span class="op">=</span> df.corr()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">9</span>))<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.heatmap(correletion_matrix,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                 annot <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                 fmt <span class="op">=</span> <span class="st">'.2f'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                 cmap <span class="op">=</span> <span class="st">'YlOrRd'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Classification_files/figure-html/cell-4-output-1.png" width="593" height="449"></p>
+<p><img src="Classification_files/figure-html/cell-7-output-1.png" width="917" height="712"></p>
 </div>
 </div>
+<p>A higher positve value means a potential possitive correletion; a higher negative means a potential negative correletion.</p>
+<p>So, based on the contribution matrix, as “cp” goes up, the “target value” should also goes up.</p>
+<p>We can do a basic graph to visualize the relation between cp and target.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crosstab for cp and target</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pd.crosstab(df.cp, df.target).plot(kind <span class="op">=</span> <span class="st">'bar'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                   figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">9</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                   color <span class="op">=</span> [<span class="st">'lightblue'</span>, <span class="st">'salmon'</span>])<span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Heart Disease Frequence'</span>)<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Chest Pain Type'</span>)<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amount'</span>)<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'No Disease'</span>, <span class="st">'Disease'</span>])<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation <span class="op">=</span> <span class="dv">0</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Classification_files/figure-html/cell-8-output-1.png" width="965" height="745"></p>
+</div>
+</div>
+<p>Even though, Chest Pain Type 3 goes down, the ratio of disease to no disease is still much higher.</p>
+<p>Correlation Matrix could be a insight that we want to sort of figure out on our own. This is the purpose of EDA.</p>
+</section>
+</section>
+<section id="preparing-data-for-machine-learning-model" class="level2">
+<h2 class="anchored" data-anchor-id="preparing-data-for-machine-learning-model">Preparing Data for Machine Learning Model</h2>
+<p>Before Modeling, we need to do two things:</p>
+<ol type="1">
+<li>Split the dataset into features &amp; labels</li>
+<li>Split the dataset into trainning dataset &amp; testing dataset</li>
+</ol>
+<p>Why?</p>
+<p>First, because we want to do binary classification, spliting the dataset into features and labels is very important. Second, if we don’t split the dataset into trainning dataset &amp; testing dataset, how would you know know how well your model goes on a new patient not included in the original full data?</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into features and label</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(<span class="st">'target'</span>, axis <span class="op">=</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'target'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">cp</th>
+<th data-quarto-table-cell-role="th">trestbps</th>
+<th data-quarto-table-cell-role="th">chol</th>
+<th data-quarto-table-cell-role="th">fbs</th>
+<th data-quarto-table-cell-role="th">restecg</th>
+<th data-quarto-table-cell-role="th">thalach</th>
+<th data-quarto-table-cell-role="th">exang</th>
+<th data-quarto-table-cell-role="th">oldpeak</th>
+<th data-quarto-table-cell-role="th">slope</th>
+<th data-quarto-table-cell-role="th">ca</th>
+<th data-quarto-table-cell-role="th">thal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>63</td>
+<td>1</td>
+<td>3</td>
+<td>145</td>
+<td>233</td>
+<td>1</td>
+<td>0</td>
+<td>150</td>
+<td>0</td>
+<td>2.3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>37</td>
+<td>1</td>
+<td>2</td>
+<td>130</td>
+<td>250</td>
+<td>0</td>
+<td>1</td>
+<td>187</td>
+<td>0</td>
+<td>3.5</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>41</td>
+<td>0</td>
+<td>1</td>
+<td>130</td>
+<td>204</td>
+<td>0</td>
+<td>0</td>
+<td>172</td>
+<td>0</td>
+<td>1.4</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>56</td>
+<td>1</td>
+<td>1</td>
+<td>120</td>
+<td>236</td>
+<td>0</td>
+<td>1</td>
+<td>178</td>
+<td>0</td>
+<td>0.8</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>57</td>
+<td>0</td>
+<td>0</td>
+<td>120</td>
+<td>354</td>
+<td>0</td>
+<td>1</td>
+<td>163</td>
+<td>1</td>
+<td>0.6</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">298</td>
+<td>57</td>
+<td>0</td>
+<td>0</td>
+<td>140</td>
+<td>241</td>
+<td>0</td>
+<td>1</td>
+<td>123</td>
+<td>1</td>
+<td>0.2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">299</td>
+<td>45</td>
+<td>1</td>
+<td>3</td>
+<td>110</td>
+<td>264</td>
+<td>0</td>
+<td>1</td>
+<td>132</td>
+<td>0</td>
+<td>1.2</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">300</td>
+<td>68</td>
+<td>1</td>
+<td>0</td>
+<td>144</td>
+<td>193</td>
+<td>1</td>
+<td>1</td>
+<td>141</td>
+<td>0</td>
+<td>3.4</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">301</td>
+<td>57</td>
+<td>1</td>
+<td>0</td>
+<td>130</td>
+<td>131</td>
+<td>0</td>
+<td>1</td>
+<td>115</td>
+<td>1</td>
+<td>1.2</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">302</td>
+<td>57</td>
+<td>0</td>
+<td>1</td>
+<td>130</td>
+<td>236</td>
+<td>0</td>
+<td>0</td>
+<td>174</td>
+<td>0</td>
+<td>0.0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>303 rows × 13 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0      1
+1      1
+2      1
+3      1
+4      1
+      ..
+298    0
+299    0
+300    0
+301    0
+302    0
+Name: target, Length: 303, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into trainning dataset &amp; testing dataset</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">24</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X,y,test_size <span class="op">=</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">cp</th>
+<th data-quarto-table-cell-role="th">trestbps</th>
+<th data-quarto-table-cell-role="th">chol</th>
+<th data-quarto-table-cell-role="th">fbs</th>
+<th data-quarto-table-cell-role="th">restecg</th>
+<th data-quarto-table-cell-role="th">thalach</th>
+<th data-quarto-table-cell-role="th">exang</th>
+<th data-quarto-table-cell-role="th">oldpeak</th>
+<th data-quarto-table-cell-role="th">slope</th>
+<th data-quarto-table-cell-role="th">ca</th>
+<th data-quarto-table-cell-role="th">thal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">105</td>
+<td>68</td>
+<td>0</td>
+<td>2</td>
+<td>120</td>
+<td>211</td>
+<td>0</td>
+<td>0</td>
+<td>115</td>
+<td>0</td>
+<td>1.5</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">200</td>
+<td>44</td>
+<td>1</td>
+<td>0</td>
+<td>110</td>
+<td>197</td>
+<td>0</td>
+<td>0</td>
+<td>177</td>
+<td>0</td>
+<td>0.0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">260</td>
+<td>66</td>
+<td>0</td>
+<td>0</td>
+<td>178</td>
+<td>228</td>
+<td>1</td>
+<td>1</td>
+<td>165</td>
+<td>1</td>
+<td>1.0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">102</td>
+<td>63</td>
+<td>0</td>
+<td>1</td>
+<td>140</td>
+<td>195</td>
+<td>0</td>
+<td>1</td>
+<td>179</td>
+<td>0</td>
+<td>0.0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">183</td>
+<td>58</td>
+<td>1</td>
+<td>2</td>
+<td>112</td>
+<td>230</td>
+<td>0</td>
+<td>0</td>
+<td>165</td>
+<td>0</td>
+<td>2.5</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">207</td>
+<td>60</td>
+<td>0</td>
+<td>0</td>
+<td>150</td>
+<td>258</td>
+<td>0</td>
+<td>0</td>
+<td>157</td>
+<td>0</td>
+<td>2.6</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">123</td>
+<td>54</td>
+<td>0</td>
+<td>2</td>
+<td>108</td>
+<td>267</td>
+<td>0</td>
+<td>0</td>
+<td>167</td>
+<td>0</td>
+<td>0.0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">129</td>
+<td>74</td>
+<td>0</td>
+<td>1</td>
+<td>120</td>
+<td>269</td>
+<td>0</td>
+<td>0</td>
+<td>121</td>
+<td>1</td>
+<td>0.2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">145</td>
+<td>70</td>
+<td>1</td>
+<td>1</td>
+<td>156</td>
+<td>245</td>
+<td>0</td>
+<td>0</td>
+<td>143</td>
+<td>0</td>
+<td>0.0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">192</td>
+<td>54</td>
+<td>1</td>
+<td>0</td>
+<td>120</td>
+<td>188</td>
+<td>0</td>
+<td>1</td>
+<td>113</td>
+<td>0</td>
+<td>1.4</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<p>242 rows × 13 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">sex</th>
+<th data-quarto-table-cell-role="th">cp</th>
+<th data-quarto-table-cell-role="th">trestbps</th>
+<th data-quarto-table-cell-role="th">chol</th>
+<th data-quarto-table-cell-role="th">fbs</th>
+<th data-quarto-table-cell-role="th">restecg</th>
+<th data-quarto-table-cell-role="th">thalach</th>
+<th data-quarto-table-cell-role="th">exang</th>
+<th data-quarto-table-cell-role="th">oldpeak</th>
+<th data-quarto-table-cell-role="th">slope</th>
+<th data-quarto-table-cell-role="th">ca</th>
+<th data-quarto-table-cell-role="th">thal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">202</td>
+<td>58</td>
+<td>1</td>
+<td>0</td>
+<td>150</td>
+<td>270</td>
+<td>0</td>
+<td>0</td>
+<td>111</td>
+<td>1</td>
+<td>0.8</td>
+<td>2</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">186</td>
+<td>60</td>
+<td>1</td>
+<td>0</td>
+<td>130</td>
+<td>253</td>
+<td>0</td>
+<td>1</td>
+<td>144</td>
+<td>1</td>
+<td>1.4</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">94</td>
+<td>45</td>
+<td>0</td>
+<td>1</td>
+<td>112</td>
+<td>160</td>
+<td>0</td>
+<td>1</td>
+<td>138</td>
+<td>0</td>
+<td>0.0</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">218</td>
+<td>65</td>
+<td>1</td>
+<td>0</td>
+<td>135</td>
+<td>254</td>
+<td>0</td>
+<td>0</td>
+<td>127</td>
+<td>0</td>
+<td>2.8</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">47</td>
+<td>47</td>
+<td>1</td>
+<td>2</td>
+<td>138</td>
+<td>257</td>
+<td>0</td>
+<td>0</td>
+<td>156</td>
+<td>0</td>
+<td>0.0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">184</td>
+<td>50</td>
+<td>1</td>
+<td>0</td>
+<td>150</td>
+<td>243</td>
+<td>0</td>
+<td>0</td>
+<td>128</td>
+<td>0</td>
+<td>2.6</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">264</td>
+<td>54</td>
+<td>1</td>
+<td>0</td>
+<td>110</td>
+<td>206</td>
+<td>0</td>
+<td>0</td>
+<td>108</td>
+<td>1</td>
+<td>0.0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">70</td>
+<td>54</td>
+<td>1</td>
+<td>2</td>
+<td>120</td>
+<td>258</td>
+<td>0</td>
+<td>0</td>
+<td>147</td>
+<td>0</td>
+<td>0.4</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">290</td>
+<td>61</td>
+<td>1</td>
+<td>0</td>
+<td>148</td>
+<td>203</td>
+<td>0</td>
+<td>1</td>
+<td>161</td>
+<td>0</td>
+<td>0.0</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">152</td>
+<td>64</td>
+<td>1</td>
+<td>3</td>
+<td>170</td>
+<td>227</td>
+<td>0</td>
+<td>0</td>
+<td>155</td>
+<td>0</td>
+<td>0.6</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<p>61 rows × 13 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>105    1
+200    0
+260    0
+102    1
+183    0
+      ..
+207    0
+123    1
+129    1
+145    1
+192    0
+Name: target, Length: 242, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>y_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>202    0
+186    0
+94     1
+218    0
+47     1
+      ..
+184    0
+264    0
+70     1
+290    0
+152    1
+Name: target, Length: 61, dtype: int64</code></pre>
+</div>
+</div>
+<p>Now we’ve had our data split into training and testing dataset, and we could use 3 different machine learning models to demonstrate the preliminary model.</p>
+<ol type="1">
+<li>Logistic Regression</li>
+<li>K-Neareast Neighbors Classifer</li>
+<li>Random Forest Classifier</li>
+</ol>
+<p>In this note, we just compare 3 different classification models, so we don’t do tuning the model find the important feature or others.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save Model Score</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>M_Score <span class="op">=</span> {}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="logistic-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression-model">Logistic Regression Model</h3>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set Random Seed</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">24</span>)<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression Model</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>log_reg_model <span class="op">=</span> {<span class="st">'Logistic Regression'</span>: LogisticRegression()}<span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model to the training data</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="bu">list</span>(log_reg_model.keys())[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> log_reg_model[key]<span class="op">;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>value.fit(X_train, y_train)<span class="op">;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>M_Score [key] <span class="op">=</span> value.score(X_test, y_test)<span class="op">;</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>M_Score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/tianyu/miniconda3/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:460: ConvergenceWarning:
+
+lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>{'Logistic Regression': 0.8688524590163934}</code></pre>
+</div>
+</div>
+</section>
+<section id="knn-model" class="level3">
+<h3 class="anchored" data-anchor-id="knn-model">KNN Model</h3>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set Random Seed</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">24</span>)<span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN Model</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>log_reg_model <span class="op">=</span> {<span class="st">'KNN'</span>: KNeighborsClassifier()}<span class="op">;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model to the training data</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="bu">list</span>(log_reg_model.keys())[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> log_reg_model[key]<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>value.fit(X_train, y_train)<span class="op">;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>M_Score [key] <span class="op">=</span> value.score(X_test, y_test)<span class="op">;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>M_Score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>{'Logistic Regression': 0.8688524590163934, 'KNN': 0.6721311475409836}</code></pre>
+</div>
+</div>
+</section>
+<section id="random-forest-model" class="level3">
+<h3 class="anchored" data-anchor-id="random-forest-model">Random Forest Model</h3>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set Random Seed</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">24</span>)<span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN Model</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>log_reg_model <span class="op">=</span> {<span class="st">'Random Forest'</span>: RandomForestClassifier()}<span class="op">;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model to the training data</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="bu">list</span>(log_reg_model.keys())[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> log_reg_model[key]<span class="op">;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>value.fit(X_train, y_train)<span class="op">;</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>M_Score [key] <span class="op">=</span> value.score(X_test, y_test)<span class="op">;</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>M_Score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>{'Logistic Regression': 0.8688524590163934,
+ 'KNN': 0.6721311475409836,
+ 'Random Forest': 0.8688524590163934}</code></pre>
+</div>
+</div>
+</section>
+<section id="model-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="model-comparison">Model Comparison</h3>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>M_Compare <span class="op">=</span> pd.DataFrame(M_Score, index <span class="op">=</span> [<span class="st">'Accuracy Score'</span>])<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>M_Compare.T.plot.bar()<span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation <span class="op">=</span> <span class="dv">0</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Classification_files/figure-html/cell-21-output-1.png" width="571" height="411"></p>
+</div>
+</div>
+<p>Here, we get the accuracy score for 3 different models. As you can see, this is the preliminary results by 3 different models. If we want the result fall into 95% or higher, we need to know tuning or finding important features.</p>
+
+
+</section>
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
